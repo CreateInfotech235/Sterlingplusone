@@ -1,14 +1,11 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
-    vite: {
-        server: {
-            watch: {
-                usePolling: true,
-            },
-        },
-    },
+  plugins: [react()],
+  base: './', // Use this if your app is in a subfolder
+  build: {
+    outDir: 'dist', // Default is 'dist', ensure this matches
+  },
+
 });
