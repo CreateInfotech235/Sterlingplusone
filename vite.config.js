@@ -1,18 +1,14 @@
-import { URL, fileURLToPath } from "node:url";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-
-export default defineConfig(() => {
-  return {
-    build: {
-      outDir: "dist",
-    },
+// https://vitejs.dev/config/
+export default defineConfig({
     plugins: [react()],
-    resolve: {
-      alias: {
-        "@": fileURLToPath(new URL("./src", import.meta.url)),
-      },
+    vite: {
+        server: {
+            watch: {
+                usePolling: true,
+            },
+        },
     },
-  };
 });
