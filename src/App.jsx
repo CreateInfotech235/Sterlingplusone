@@ -6,7 +6,7 @@ import { Route, Routes } from "react-router";
 import WebBody from "./Components/WebBody/WebBody";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import Services from "./Pages/services/Services";
+import Services from "./Pages/Services/Services";
 import Blog from "./Pages/Blog/Blog";
 import Contact from "./Pages/Contact/Contact";
 import About from "./Pages/About/About";
