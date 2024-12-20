@@ -125,7 +125,7 @@ function Contact() {
                     // value={message}
                     // onChange={(e) => setMessage(e.target.value)}
                   />
-                  <button className="mt-5 tracking-wide font-semibold bg-green-400 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                  <button className="mt-5 tracking-wide font-semibold text-white bg-[#F97316] text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                     <span className="ml-2">Submit Now</span>
                   </button>
                 </div>

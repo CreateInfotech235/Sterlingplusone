@@ -45,7 +45,7 @@ function About() {
               world connects through seamless and efficient shipping solutions.
             </p>
             <div class="mt-6 flex items-center gap-4">
-              <button class="px-6 py-2 bg-blue-700 text-white font-semibold rounded-md">
+              <button class="px-6 py-2 bg-[#F97316] text-white font-semibold rounded-md">
                 Contact Us
               </button>
               <div class="flex items-center text-gray-600">
