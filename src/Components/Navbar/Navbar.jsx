@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HeaderLogo from "../../assets/logo.png";
+import HeaderLogo from "../../assets/sterlingplusone_logo.png";
 import LoginImg from "../../assets/logo.png";
 // import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -60,14 +60,14 @@ function Navbar({ Login, userData }) {
     <>
       <div className="bg-[#111827]">
         <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center py-5 ">
-            <div className="w-1/2">
+          <div className="flex flex-wrap items-center py-5">
+            <div className="w-full md:w-1/2 text-center md:text-left mb-4 md:mb-0">
               <p className="text-white font-bold">
                 Best courier service provider in the world
               </p>
             </div>
-            <div className="w-1/2 flex justify-end">
-              <ul className="flex">
+            <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+              <ul className="flex flex-wrap justify-center">
                 <li className="pe-5">
                   <FaFacebookF style={{ color: "#fff" }} />
                 </li>
@@ -100,7 +100,7 @@ function Navbar({ Login, userData }) {
           <div className="flex justify-between h-24">
             <div className="flex items-center">
               <Link to="/" className="flex-shrink-0">
-                <img src={HeaderLogo} className="h-12" alt="Logo" />
+                <img src={HeaderLogo} className="h-28" alt="Logo" />
               </Link>
             </div>
 

@@ -20,12 +20,7 @@ import People4 from "../../assets/image (14).png";
 function WebBody() {
   return (
     <div>
-      <div className="w-full relative isolate overflow-hidden bg-gray-900 py-24 sm:pt-28 sm:pb-36">
-        {/* <img
-            alt=""
-            src={Dash}
-            className="absolute inset-0 -z-10 size-full object-cover object-right md:object-center"
-          /> */}
+      <div className="w-full relative isolate overflow-hidden bg-gray-900 py-12 sm:py-24">
         <div
           aria-hidden="true"
           className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
@@ -40,7 +35,7 @@ function WebBody() {
         </div>
         <div
           aria-hidden="true"
-          className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu"
+          className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0"
         >
           <div
             style={{
@@ -51,44 +46,25 @@ function WebBody() {
           />
         </div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl lg:mx-0 mx-auto">
-            <h3 className="text-2xl md:text-3xl text-center lg:text-5xl tracking-tight text-white leading-[1.2] md:leading-[1.4] capitalize">
+          <div className="text-center">
+            <h3 className="text-2xl sm:text-3xl lg:text-5xl tracking-tight text-white leading-tight capitalize">
               Welcome to Sterlingplus
             </h3>
-            <h1 className="text-2xl text-center pt-12 md:text-3xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-[1.2] md:leading-[1.4]">
+            <h1 className="mt-4 text-2xl sm:text-3xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-tight">
               Full Range Of Transportation Worldwide
             </h1>
-            <p className="mt-4 text-center md:mt-8 text-base md:text-lg lg:text-xl text-gray-300 font-medium">
-              Send your parcel from the comfort of your home or office.Whether
-              it's a local package or a global shipment , we ensure your
+            <p className="mt-4 text-sm sm:text-base lg:text-xl text-gray-300 font-medium">
+              Send your parcel from the comfort of your home or office. Whether
+              it's a local package or a global shipment, we ensure your
               deliveries arrive on time, every time. With real-time tracking,
               affordable rates, and world-class customer support, trust us to
               handle all your courier needs.
             </p>
-            <p
-              className="mt-4 text-center md:mt-14 text-base md:text-lg lg:text-xl text-gray-300 font-medium relative z-[9999] "
-              style={{
-                position: "relative",
-              }}
-            >
-              <span
-                style={{
-                  content: "''",
-                  position: "absolute",
-                  left: "63%",
-                  top: "-20px",
-                  transform: "rotate(354deg)",
-                  width: "10rem", // Adjust size (e.g., 12px = 3rem)
-                  height: "10rem",
-                  backgroundImage: `url(${arrow})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              ></span>
-              <button className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-[15px] py-[5px] md:px-[30px] md:py-[15px] rounded-lg hover:bg-blue-800 whitespace-nowrap ml-5">
+            <div className="mt-6 flex flex-col sm:flex-row sm:justify-center items-center">
+              <button className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 rounded-lg hover:bg-blue-800 whitespace-nowrap">
                 Discover More
               </button>
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -145,131 +121,124 @@ function WebBody() {
       </section>
 
       <div class="mb-10">
-        <div class="max-w-7xl w-full mx-auto pt-8">
+  <div class="max-w-7xl w-full mx-auto pt-8 px-4">
+    <div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left">
+        : Our <span class="text-[#904064]">Services</span> :
+      </h1>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* <!-- Left Column: Services --> */}
+      <div>
+        {/* <!-- Air Freight --> */}
+        <div class="flex flex-col sm:flex-row items-start gap-4 mb-8">
+          <img
+            src={AIR}
+            alt="Air Freight"
+            class="rounded-lg w-full sm:w-[305px] h-[195px] object-cover"
+          />
           <div>
-            <h1 className="text-5xl font-bold small mt-4 mb-10">
-              : Our <span className="text-[#904064]">Services</span> :
-            </h1>
+            <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-black small">
+              Air Freight Services
+            </h3>
+            <p class="text-sm sm:text-base text-gray-500 mt-1">
+              We offer both domestic and international air freight services,
+              making it easier than ever to ship goods across regions.
+            </p>
+            <a
+              href="#"
+              class="text-[#322153] text-sm sm:text-base font-semibold mt-2 inline-flex items-center"
+            >
+              READ MORE
+              <span class="ml-1">&rarr;</span>
+            </a>
           </div>
-          <div class="grid grid-cols-2 gap-8">
-            {/* <!-- Left Column: Services --> */}
-            <div>
-              {/* <!-- Air Freight --> */}
-              <div class="flex items-start gap-4 mb-8">
-                <img
-                  src={AIR}
-                  width={"100%"}
-                  alt="Air Freight"
-                  class="rounded-lg w-[305px] h-[195px] object-cover"
-                />
-                <div>
-                  <h3 class="text-2xl font-semibold text-black small">
-                    Air Freight Services
-                  </h3>
-                  <p class="text-sm text-gray-500 mt-1">
-                    We offer both domestic and international air freight
-                    services, making it easier than ever to ship goods across
-                    regions
-                  </p>
-                  <a
-                    href="#"
-                    class="text-[#322153] text-sm font-semibold mt-2 inline-flex items-center"
-                  >
-                    READ MORE
-                    <span class="ml-1">&rarr;</span>
-                  </a>
-                </div>
-              </div>
-              {/* <!-- Road Freight --> */}
-              <div class="flex items-start gap-4 mb-8">
-                <img
-                  src={ROAD}
-                  alt="Road Freight"
-                  class="rounded-lg w-[305px] h-[195px] object-cover"
-                />
-                <div>
-                  <h3 class="text-2xl small font-semibold text-black">
-                    Road Freight Services
-                  </h3>
-                  <p class="text-sm text-gray-500 mt-1">
-                    Enabling seamless transportation for all types of cargo.
-                    Whether you're shipping within the same country or across
-                    borders
-                  </p>
-                  <a
-                    href="#"
-                    class="text-[#322153] text-sm font-semibold mt-2 inline-flex items-center"
-                  >
-                    READ MORE
-                    <span class="ml-1">&rarr;</span>
-                  </a>
-                </div>
-              </div>
-              {/* <!-- Gateway Freight --> */}
-              <div class="flex items-start gap-4">
-                <img
-                  src={Gateway}
-                  alt="Gateway Freight"
-                  class="rounded-lg w-[305px] h-[195px] object-cover"
-                />
-                <div>
-                  <h3 class="text-2xl small font-semibold text-black">
-                    Gateway Freight Services
-                  </h3>
-                  <p class="text-sm text-gray-500 mt-1">
-                    These hubs act as key transit points where consolidated,
-                    de-consolidated, processed, then dispatched to their final
-                    destinations
-                  </p>
-                  <a
-                    href="#"
-                    class="text-[#322153] text-sm font-semibold mt-2 inline-flex items-center"
-                  >
-                    READ MORE
-                    <span class="ml-1">&rarr;</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* <!-- Right Column: Hero Section --> */}
-            <div>
-              <h1 class="text-[48px] font-bold small text-black leading-tight noto">
-                Your <span class="text-[#F97316] small">Ocean</span> to Seamless
-                <span class="block">Transportation</span>
-              </h1>
-              <p class="text-sm text-gray-500 mt-4">
-                Ocean freight refers to the transportation of goods via sea
-                using cargo ships. It is one of the most common and
-                cost-effective methods for shipping large quantities of goods
-                across international waters.
-              </p>
-              <div class="w-full mt-6 h-[420px] bg-gray-300 rounded-lg relative overflow-hidden">
-                <img
-                  src={Ocean}
-                  alt="Ocean Freight"
-                  class="w-full h-full object-cover"
-                />
-                {/* <!-- Play Button --> */}
-                <div class="absolute inset-0 flex justify-center items-center bg-black bg-opacity-40">
-                  <button class="w-20 h-20 bg-white bg-opacity-40 absolute rounded-full flex items-center justify-center shadow-lg">
-                    <FaPlay style={{ color: "#D23474" }} />
-                  </button>
-                  <button class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-                    <FaPlay style={{ color: "#D23474" }} />
-                  </button>
-                </div>
-              </div>
-              {/* <!-- Hero Title --> */}
-            </div>
+        </div>
+        {/* <!-- Road Freight --> */}
+        <div class="flex flex-col sm:flex-row items-start gap-4 mb-8">
+          <img
+            src={ROAD}
+            alt="Road Freight"
+            class="rounded-lg w-full sm:w-[305px] h-[195px] object-cover"
+          />
+          <div>
+            <h3 class="text-lg sm:text-xl md:text-2xl small font-semibold text-black">
+              Road Freight Services
+            </h3>
+            <p class="text-sm sm:text-base text-gray-500 mt-1">
+              Enabling seamless transportation for all types of cargo. Whether
+              you're shipping within the same country or across borders.
+            </p>
+            <a
+              href="#"
+              class="text-[#322153] text-sm sm:text-base font-semibold mt-2 inline-flex items-center"
+            >
+              READ MORE
+              <span class="ml-1">&rarr;</span>
+            </a>
+          </div>
+        </div>
+        {/* <!-- Gateway Freight --> */}
+        <div class="flex flex-col sm:flex-row items-start gap-4">
+          <img
+            src={Gateway}
+            alt="Gateway Freight"
+            class="rounded-lg w-full sm:w-[305px] h-[195px] object-cover"
+          />
+          <div>
+            <h3 class="text-lg sm:text-xl md:text-2xl small font-semibold text-black">
+              Gateway Freight Services
+            </h3>
+            <p class="text-sm sm:text-base text-gray-500 mt-1">
+              These hubs act as key transit points where consolidated,
+              de-consolidated, processed, then dispatched to their final
+              destinations.
+            </p>
+            <a
+              href="#"
+              class="text-[#322153] text-sm sm:text-base font-semibold mt-2 inline-flex items-center"
+            >
+              READ MORE
+              <span class="ml-1">&rarr;</span>
+            </a>
           </div>
         </div>
       </div>
-      <div className="bg-gray-100 pt-10 pb-20 px-5">
+      {/* <!-- Right Column: Hero Section --> */}
+      <div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold small text-black leading-tight text-center md:text-left">
+          Your <span class="text-[#F97316] small">Ocean</span> to Seamless
+          <span class="block">Transportation</span>
+        </h1>
+        <p class="text-sm sm:text-base text-gray-500 mt-4 text-center md:text-left">
+          Ocean freight refers to the transportation of goods via sea using
+          cargo ships. It is one of the most common and cost-effective methods
+          for shipping large quantities of goods across international waters.
+        </p>
+        <div class="w-full mt-6 h-[280px] sm:h-[350px] md:h-[420px] bg-gray-300 rounded-lg relative overflow-hidden">
+          <img
+            src={Ocean}
+            alt="Ocean Freight"
+            class="w-full h-full object-cover"
+          />
+          {/* <!-- Play Button --> */}
+          <div class="absolute inset-0 flex justify-center items-center bg-black bg-opacity-40">
+            <button class="w-16 h-16 md:w-20 md:h-20 bg-white bg-opacity-40 absolute rounded-full flex items-center justify-center shadow-lg">
+              <FaPlay style={{ color: "#D23474" }} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      <div className="bg-gray-100 pt-10 pb-20 px-5 ">
         <div className="max-w-7xl w-full mx-auto">
           {/* Header */}
           <div>
-            <h1 className="text-5xl font-bold small  mb-10">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left">
               : Our <span className="text-[#904064]">Plans</span> :
             </h1>
           </div>
@@ -442,7 +411,7 @@ function WebBody() {
         <div class="max-w-7xl w-full mx-auto px-4 py-8">
           {/* <!-- Header Section --> */}
           <div>
-            <h1 className="text-5xl text-white font-bold small mt-4 mb-10">
+            <h1 className="text-3xl text-white sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left">
               : Why <span className="text-[#904064]">Choose Us</span> :
             </h1>
           </div>
@@ -535,70 +504,69 @@ function WebBody() {
       </div>
 
       <div className="max-w-7xl w-full mx-auto bg-white py-10 px-6">
-        {/* Section Heading */}
-        <div className="mb-12">
-          <div>
-            <h1 className="text-5xl font-bold small  mb-10">
-              : Our <span className="text-[#904064]">Team</span> :
-            </h1>
-          </div>
-        </div>
+  {/* Section Heading */}
+  <div className="mb-12 text-center">
+    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left">
+      : Our <span className="text-[#904064]">Team</span> :
+    </h1>
+  </div>
 
-        {/* Team Members */}
-        <div className="flex justify-around gap-10">
-          {/* Team Member 1 */}
-          <div className="flex flex-col items-center">
-            <div className="w-64  bg-gray-200 rounded-t-full overflow-hidden">
-              <img
-                src={People1}
-                alt="Alan Willie"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="text-lg font-semibold mt-4">Alan Willie</h3>
-            <p className="text-gray-500">3 year experience</p>
-          </div>
-
-          {/* Team Member 2 */}
-          <div className="flex flex-col items-center">
-            <div className="w-64 mt-24 bg-gray-200 rounded-t-full overflow-hidden">
-              <img
-                src={People2}
-                alt="Amara Willie"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="text-lg font-semibold mt-4">Amara Willie</h3>
-            <p className="text-gray-500">2.5 year experience</p>
-          </div>
-
-          {/* Team Member 3 */}
-          <div className="flex flex-col items-center">
-            <div className="w-64  bg-gray-200 rounded-t-full overflow-hidden">
-              <img
-                src={People3}
-                alt="Alex Robert"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="text-lg font-semibold mt-4">Alex Robert</h3>
-            <p className="text-gray-500">4 year experience</p>
-          </div>
-
-          {/* Team Member 4 */}
-          <div className="flex flex-col items-center">
-            <div className="w-64 mt-24 bg-gray-200 rounded-t-full overflow-hidden">
-              <img
-                src={People4}
-                alt="Sarina Jones"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="text-lg font-semibold mt-4">Sarina Jones</h3>
-            <p className="text-gray-500">4.5 year experience</p>
-          </div>
-        </div>
+  {/* Team Members */}
+  <div className="flex flex-wrap justify-center gap-10">
+    {/* Team Member 1 */}
+    <div className="flex flex-col items-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+      <div className="w-48 md:w-64 bg-gray-200 rounded-t-full overflow-hidden">
+        <img
+          src={People1}
+          alt="Alan Willie"
+          className="w-full h-full object-cover"
+        />
       </div>
+      <h3 className="text-lg font-semibold mt-4">Alan Willie</h3>
+      <p className="text-gray-500">3 year experience</p>
+    </div>
+
+    {/* Team Member 2 */}
+    <div className="flex flex-col items-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+      <div className="w-48 md:w-64 mt-8 md:mt-24 bg-gray-200 rounded-t-full overflow-hidden">
+        <img
+          src={People2}
+          alt="Amara Willie"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <h3 className="text-lg font-semibold mt-4">Amara Willie</h3>
+      <p className="text-gray-500">2.5 year experience</p>
+    </div>
+
+    {/* Team Member 3 */}
+    <div className="flex flex-col items-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+      <div className="w-48 md:w-64 bg-gray-200 rounded-t-full overflow-hidden">
+        <img
+          src={People3}
+          alt="Alex Robert"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <h3 className="text-lg font-semibold mt-4">Alex Robert</h3>
+      <p className="text-gray-500">4 year experience</p>
+    </div>
+
+    {/* Team Member 4 */}
+    <div className="flex flex-col items-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+      <div className="w-48 md:w-64 mt-8 md:mt-24 bg-gray-200 rounded-t-full overflow-hidden">
+        <img
+          src={People4}
+          alt="Sarina Jones"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <h3 className="text-lg font-semibold mt-4">Sarina Jones</h3>
+      <p className="text-gray-500">4.5 year experience</p>
+    </div>
+  </div>
+</div>
+
     </div>
   );
 }
