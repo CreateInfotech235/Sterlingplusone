@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { GetManu, ManuPost } from "../../Api/Manu";
 import { fileToBase64 } from "../../Api/Convertbase64";
+import { uploadimage } from "../../../../Api/Webapi/base64imglink";
 
 const Manu = () => {
   const [menuData, setMenuData] = useState({
@@ -50,7 +51,7 @@ const Manu = () => {
       ...menuData,
       logo: {
         ...menuData.logo,
-        [field]: value
+        [field]:uploadimage(value, "logo")
       }
     });
   };

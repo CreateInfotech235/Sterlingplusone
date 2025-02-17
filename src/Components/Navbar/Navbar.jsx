@@ -20,6 +20,7 @@ function Navbar() {
     return `${baseClass} ${location.pathname === path ? "text-blue-700 font-bold" : ""
       }`;
   };
+;
 
   useEffect(() => {
     const fetchNavData = async () => {
@@ -67,20 +68,20 @@ function Navbar() {
 
   return (
     <>
-      <div className="bg-[#111827]">
+      <div className="bg-[#111827]" >
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center py-5">
-            <div className="w-full md:w-1/2 text-center md:text-left mb-4 md:mb-0">
+          <div className="flex flex-wrap items-center py-5" >
+            <div className="w-full md:w-1/2 text-center md:text-left mb-4 md:mb-0"  data-aos="zoom-in-left">
               <p className="text-white font-bold">
                 {nav?.title || <div className="w-48 h-4 bg-gray-300 rounded animate-pulse"></div>}
               </p>
             </div>
-            <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+            <div className="w-full md:w-1/2 flex justify-center md:justify-end" >
               <ul className="flex flex-wrap justify-center">
                 {nav?.icons ? (
                   nav.icons.map((icon, index) => (
                     <Link key={index} to={icon.link} target="_blank">
-                      <li className="pe-5">
+                      <li className="pe-5" data-aos="zoom-in" data-aos-delay={index * 100}>
                         <img src={icon.Image} alt={`Icon ${index + 1}`} className="w-6 h-6" />
                       </li>
                     </Link>
@@ -102,7 +103,7 @@ function Navbar() {
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-24">
             <div className="flex items-center">
-              <Link to={manu?.logo?.path || "/"} className="flex-shrink-0">
+              <Link to={manu?.logo?.path || "/"} className="flex-shrink-0" data-aos="zoom-in-left" data-aos-delay={450}>
                 {manu?.logo?.img ? (
                   <img src={manu?.logo?.img} className="h-16" alt="Logo" />
                 ) : (
@@ -115,11 +116,12 @@ function Navbar() {
             <div className="hidden md:flex items-center">
               <div className="flex lg:space-x-8 md:space-x-4">
                 {manu?.menuList ? (
-                  manu.menuList.map((link) => (
+                  manu.menuList.map((link, index) => (
                     <Link
                       key={link._id}
                       to={link.path}
                       className={`${getLinkClass(link.path)} text-[18px]`}
+                      data-aos="zoom-in" data-aos-delay={index * 100}
                     >
                       {link.name}
                     </Link>
@@ -138,6 +140,7 @@ function Navbar() {
                 <Link
                   to={manu.button.link}
                   className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-[10px] py-[5px] md:px-[20px] md:py-[11px] rounded-lg hover:bg-blue-800 whitespace-nowrap ml-5"
+                  data-aos="zoom-in" data-aos-delay={450}
                 >
                   {manu.button.text}
                 </Link>
@@ -148,6 +151,7 @@ function Navbar() {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="md:hidden ml-1 p-2 rounded-md text-gray-700 hover:text-blue-700 focus:outline-none"
+                
               >
                 <svg
                   className="h-6 w-6"

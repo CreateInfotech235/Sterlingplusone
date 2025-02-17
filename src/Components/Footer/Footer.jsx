@@ -20,10 +20,10 @@ function Footer() {
   if (!footerData) return null;
 
   return (
-    <div className="bg-[#111827] text-white w-full p-8 md:p-12">
+    <div className="bg-[#111827] text-white w-full p-8 md:p-12 overflow-hidden">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-gray-600 pb-8">
         {footerData?.section?.map((section, index) => (
-          <div key={index}>
+          <div key={index} data-aos="fade-left" data-aos-delay={200 * index}>
             <h2 className="font-bold text-lg mb-4 relative before:content-[''] before:absolute before:w-20 before:h-1 before:bg-[#F97316] before:bottom-[-5px] before:left-0">
               {section?.title}
             </h2>
@@ -31,11 +31,11 @@ function Footer() {
               {section?.list?.map((item, idx) => (
                 <li key={idx} className="mb-2">
                   {item?.isbtn ? (
-                    <Link to={item?.link} className="hover:underline text-[#9B9B97]">
+                    <Link to={item?.link} className="hover:underline text-[#9B9B97]" >
                       {item?.name}
                     </Link>
                   ) : (
-                    <p className=" text-[#9B9B97]">
+                    <p className="text-[#9B9B97]">
                       {item?.name}
                     </p>
                   )}
@@ -44,16 +44,16 @@ function Footer() {
             </ul>
           </div>
         ))}
- 
+      
       </div>
       <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
         {/* Follow Us */}
         <div className="flex flex-col items-center w-full md:w-1/2 md:items-start">
-          <h2 className="font-bold text-lg mb-4 text-center md:text-left">FOLLOW US</h2>
+          <h2 className="font-bold text-lg mb-4 text-center md:text-left" data-aos="fade-UP" data-aos-delay={200}>FOLLOW US</h2>
           <div className="flex gap-4">
             {footerData?.socialMedia?.map((social, index) => (
               <>
-                <Link key={index} to={social?.link} className="text-xl">
+                <Link key={index} to={social?.link} className="text-xl" data-aos="fade-up" data-aos-delay={200*index}>
                   <img src={social?.icon} alt={social?.name} style={{ width: '30px'}} />
                 </Link>
               </>
@@ -62,8 +62,8 @@ function Footer() {
         </div>
         {/* Subscribe */}
         <div className="flex flex-col w-full md:w-1/2">
-          <h2 className="font-bold text-lg mb-4 text-center md:text-left">DON'T MISS OUT ON THE LATEST</h2>
-          <form className="flex flex-col sm:flex-row items-center w-full">
+          <h2 className="font-bold text-lg mb-4 text-center md:text-left" data-aos="fade-left" data-aos-delay={200}>DON'T MISS OUT ON THE LATEST</h2>
+          <form className="flex flex-col sm:flex-row items-center w-full" data-aos="fade-left" data-aos-delay={400}>
             <input
               type="email"
               placeholder="Your email address"
@@ -79,9 +79,9 @@ function Footer() {
         </div>
       </div>
       {/* Footer Bottom */}
-      <div className="mt-8 border-t border-gray-600 pt-8">
-        <p className="text-center text-sm mb-4">{footerData?.copyright}</p>
-        <div className="flex justify-center gap-4">
+      <div className="mt-8 border-t border-gray-600 pt-8" >
+        <p className="text-center text-sm mb-4" >{footerData?.copyright}</p>
+        <div className="flex justify-center gap-4" >
           <img src={paypal} alt="PayPal" className="w-16 h-auto" />
           <img src={Skrill} alt="Skrill" className="w-16 h-auto" />
           <img src={bitcoin} alt="Bitcoin" className="w-16 h-auto" />

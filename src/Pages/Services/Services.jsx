@@ -136,13 +136,13 @@ function Services() {
                 <p className="text-gray-600 text-sm mb-6">
                   {service.description}
                 </p>
-                <Link
+                {/* <Link
                   to={service.button.link}
                   className="text-indigo-600 font-semibold flex items-center"
                 >
                   {service.button.name}
                   <span className="ml-1">&rarr;</span>
-                </Link>
+                </Link> */}
               </div>
             </div>
           ))}

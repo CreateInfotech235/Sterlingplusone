@@ -9,8 +9,18 @@ import RtlLayout from "./layouts/rtl/index";
 import AdminLayout from "./layouts/admin/index";
 import AuthLayout from "./layouts/auth/index";
 import Protected from "./components_admin/Protected/Protected";
-
+import AOS from 'aos';
+import { useEffect } from "react";
+import 'aos/dist/aos.css';
 function App() {
+
+  useEffect(() => {
+    setTimeout(() => {
+      AOS.init({
+        once: true,
+      });
+    }, 500);
+  }, []);
 
   return (
     <>

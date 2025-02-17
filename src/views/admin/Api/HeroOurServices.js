@@ -1,32 +1,46 @@
 import axios from "axios";
 
 export const GetHeroOurServices = async () => {
-    try {
-        const response = await axios.get("https://sterlingplusone-backend-1.onrender.com/web/heroourservices");
-        console.log(response.data[0]);
-        if (response.status === 200) {
-            return response.data[0];
-        } else {
-            return response.data[0];
-        }
-    } catch (error) {
-        console.log(error);
+  try {
+    const response = await axios.get(
+      "https://sterlingplusone-backend-1.onrender.com/web/heroourservices"
+    );
+    console.log(response.data[0]);
+    if (response.status === 200) {
+      return response.data[0];
+    } else {
+      return response.data[0];
     }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-
 export const HeroOurServicesPost = async (data) => {
-    try {
-        console.log(data);
-        const response = await axios.post("https://sterlingplusone-backend-1.onrender.com/web/heroourservices", data);
-        console.log(response.data);
-        if (response.status === 200) {
-            return response.data;
-        } else {
-            return response.data;
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        throw error; // Rethrow error for caller to handle
+  try {
+    console.log(data.heroOurServices.services);
+
+    for (let i = 0; i < data.heroOurServices.services.length; i++) {
+      console.log(data.heroOurServices.services[i]);
+      const imageurl = await axios.post(
+        "https://sterlingplusone-backend-1.onrender.com/imageStore/" +
+          data.heroOurServices.services[i].image
+      );
+      console.log(imageurl);
     }
+
+    const response = await axios.post(
+      "https://sterlingplusone-backend-1.onrender.com/web/heroourservices",
+      data
+    );
+    console.log(response.data);
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      return response.data;
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    throw error; // Rethrow error for caller to handle
+  }
 };

@@ -61,7 +61,9 @@ function WebBody() {
       try {
         const heroData = await GetHeroSection();
         setHero(heroData);
-        setSetHeroLoading(false);
+        // setTimeout(() => {
+          setSetHeroLoading(false);
+        // }, 7000);
       } catch (error) {
         console.log(error);
       }
@@ -222,7 +224,8 @@ function WebBody() {
                       "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
                   }}
                   className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-50"
-                />
+               data-aos="zoom-in-up"
+               />
               </div>
               <div
                 aria-hidden="true"
@@ -234,20 +237,22 @@ function WebBody() {
                       "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
                   }}
                   className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-50"
+                  data-aos="zoom-in-up"
                 />
+                
               </div>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center">
-                  <h3 className="text-2xl sm:text-3xl lg:text-5xl tracking-tight text-white leading-tight capitalize">
+                  <h3 className="text-2xl sm:text-3xl lg:text-5xl tracking-tight text-white leading-tight capitalize" data-aos="zoom-in-up" data-aos-delay={900}>
                     {hero?.title}
                   </h3>
-                  <h1 className="mt-6 text-2xl sm:text-3xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-tight">
+                  <h1 className="mt-6 text-2xl sm:text-3xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-tight" data-aos="zoom-in-up" data-aos-delay={1000}>
                     {hero?.subTitle}
                   </h1>
-                  <p className="mt-4 text-sm sm:text-base lg:text-xl text-gray-300 font-medium">
+                  <p className="mt-4 text-sm sm:text-base lg:text-xl text-gray-300 font-medium" data-aos="zoom-in-up" data-aos-delay={1100}>
                     {hero?.description}
                   </p>
-                  <div className="mt-6 flex flex-col sm:flex-row sm:justify-center items-center">
+                  <div className="mt-6 flex flex-col sm:flex-row sm:justify-center items-center" data-aos="zoom-in-up" data-aos-delay={1200}>
                     <Link to={hero?.button?.link} className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 rounded-lg hover:bg-blue-800 whitespace-nowrap">
                       {hero?.button?.name}
                     </Link>
@@ -259,9 +264,9 @@ function WebBody() {
               <div className="scroll">
                 <div>
                   {hero?.marqueeList?.map((item, index) => (
-                    <React.Fragment key={item._id}>
-                      <h3 className="category">{item.name}</h3>
-                      <h3 className="category">
+                    <React.Fragment key={item._id} data-aos="zoom-in-up" data-aos-delay={1300}  >
+                      <h3 className="category" data-aos="zoom-in" data-aos-delay={1400}>{item.name}</h3>
+                      <h3 className="category" data-aos="zoom-in" data-aos-delay={1500}>
                         {item.icon === 'FaRegStar' ? <FaRegStar /> : <FaBox />}
                       </h3>
                     </React.Fragment>
@@ -269,9 +274,9 @@ function WebBody() {
                 </div>
                 <div>
                   {hero?.marqueeList?.map((item, index) => (
-                    <React.Fragment key={item._id}>
-                      <h3 className="category">{item.name}</h3>
-                      <h3 className="category">
+                    <React.Fragment key={item._id} data-aos="zoom-in-up" data-aos-delay={1300}  >
+                      <h3 className="category" data-aos="zoom-in" data-aos-delay={1400}>{item.name}</h3>
+                      <h3 className="category" data-aos="zoom-in" data-aos-delay={1500}>
                         {item.icon === 'FaRegStar' ? <FaRegStar /> : <FaBox />}
                       </h3>
                     </React.Fragment>
@@ -305,10 +310,10 @@ function WebBody() {
           <div className="mb-10">
             <div className="max-w-7xl w-full mx-auto pt-8 px-4">
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left">
-                  : {services?.maintitle?.split(' ')[0] || ''}
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left" data-aos="zoom-in" data-aos-delay={1000}>
+                  :{`${services?.maintitle?.split(' ')[0]} ` || ''}
                   <span className="text-[#904064]">
-                    {services?.maintitle?.split(' ')[1] || ''}
+                     {services?.maintitle?.split(' ')[1] || ''}
                   </span>
                   :
                 </h1>
@@ -318,7 +323,7 @@ function WebBody() {
                 {/* Left Column: Services */}
                 <div>
                   {services?.services?.map((service, index) => (
-                    <div key={index} className="flex flex-col sm:flex-row items-start gap-4 mb-8">
+                    <div key={index} className="flex flex-col sm:flex-row items-start gap-4 mb-8"data-aos="fade-right" data-aos-delay={200*index} >
                       <img
                         src={service.img}
                         alt={service.title}
@@ -345,14 +350,14 @@ function WebBody() {
 
                 {/* Right Column: Hero Section */}
                 <div>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small text-black leading-tight text-center md:text-left flex flex-wrap text-center">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small text-black leading-tight text-center md:text-left flex flex-wrap text-center" data-aos="fade-left"   >
                     {services?.subTitle?.split(' ')[0] || ''}  <span className="text-[#F97316] small mx-3">{services?.subTitle?.split(' ')[1] || ''}</span>
                     {services?.subTitle?.split(' ').slice(2).join(' ') || ''}
                   </h1>
-                  <p className="text-sm sm:text-base text-gray-500 mt-4 text-center md:text-left">
+                  <p className="text-sm sm:text-base text-gray-500 mt-4 text-center md:text-left" data-aos="fade-left" data-aos-delay={200*1} >
                     {services?.description}
                   </p>
-                  <div className="w-full mt-6 h-[280px] sm:h-[350px] md:h-[420px] bg-gray-300 rounded-lg relative overflow-hidden group">
+                  <div className="w-full mt-6 h-[280px] sm:h-[350px] md:h-[420px] bg-gray-300 rounded-lg relative overflow-hidden group" data-aos="fade-left" data-aos-delay={200*2} >
                     <video
                       ref={videoRef}
                       src={services?.mainVideo}
@@ -423,7 +428,7 @@ function WebBody() {
             <div className="max-w-7xl w-full mx-auto">
               {/* Header */}
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left" data-aos="zoom-in" data-aos-delay={500}>
                   : {plans.maintitle?.split(' ')[0] || ''} <span className="text-[#904064]">{plans.maintitle?.split(' ').slice(1).join(' ') || ''}</span> :
                 </h1>
               </div>
@@ -431,7 +436,7 @@ function WebBody() {
               {/* Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {plans.plan.map((plan, index) => (
-                  <div key={index} className={`${index === 1 ? 'group bg-gray-900 text-white transform scale-y-[1.10]' : 'bg-white'} rounded-lg shadow-lg overflow-hidden relative`}>
+                  <div key={index} className={`${index === 1 ? 'group bg-gray-900 text-white transform scale-y-[1.10]' : 'bg-white'} rounded-lg shadow-lg overflow-hidden relative`} data-aos="fade-left" data-aos-delay={200*index}>
                     <img
                       src={plan.img}
                       alt={plan.title}
@@ -454,14 +459,14 @@ function WebBody() {
                       </div>
                       <ul className={`space-y-3 ${index === 1 ? 'text-gray-300' : 'text-gray-600'} text-sm`}>
                         {plan.benifits.map((benefit, i) => (
-                          <li key={i} className="flex items-center">
+                          <li key={i} className="flex items-center" data-aos="fade-left" data-aos-delay={100*i*index}>
                             <IoCheckmarkDone style={{ marginRight: "3px" }} />
                             {benefit}
                           </li>
                         ))}
                       </ul>
                       {plan.button.map((btn, i) => (
-                        <button key={i} className={`mt-6 w-full ${index === 1 ? 'bg-[#F97316] hover:bg-orange-400' : 'bg-gray-800 hover:bg-gray-700'} text-white py-2 px-6 rounded-lg shadow-md transition`}>
+                        <button key={i} className={`mt-6 w-full ${index === 1 ? 'bg-[#F97316] hover:bg-orange-400' : 'bg-gray-800 hover:bg-gray-700'} text-white py-2 px-6 rounded-lg shadow-md transition`} data-aos="zoom-in" data-aos-delay={300*i}>
                           {btn.name}
                         </button>
                       ))}
@@ -504,7 +509,7 @@ function WebBody() {
             <div className="max-w-7xl w-full mx-auto px-4 py-8">
               {/* <!-- Header Section --> */}
               <div>
-                <h1 className="text-3xl text-white sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left">
+                <h1 className="text-3xl text-white sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left" data-aos="zoom-in" data-aos-delay={100}> 
                   : {chooseUs.maintitle?.split(' ')[0]} <span className="text-[#904064]">{chooseUs.maintitle?.split(' ').slice(1).join(' ')}</span> :
                 </h1>
               </div>
@@ -512,18 +517,18 @@ function WebBody() {
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 {/* <!-- Images Section --> */}
                 <div className="space-y-4">
-                  <div className="rounded-lg overflow-hidden">
-                    <img src={chooseUs.mainImage} alt="Main Image" className="w-full" />
+                  <div className="rounded-lg overflow-hidden" data-aos="zoom-in"  data-aos-delay={500*0}>
+                    <img src={chooseUs.mainImage} alt="Main Image" className="w-full"  />
                   </div>
                   <div className="flex gap-4">
-                    <div className="rounded-lg overflow-hidden">
+                    <div className="rounded-lg overflow-hidden" data-aos="zoom-in" data-aos-delay={500*2} >
                       <img
                         src={chooseUs.childImage}
                         alt="Child Image"
                         className="w-56"
                       />
                     </div>
-                    <div className="rounded-lg overflow-hidden">
+                    <div className="rounded-lg overflow-hidden" data-aos="zoom-in" data-aos-delay={500*1} >
                       <img src={chooseUs.thirdImage} alt="Third Image" className="w-full" />
                     </div>
                   </div>
@@ -531,18 +536,18 @@ function WebBody() {
 
                 {/* <!-- Text Content Section --> */}
                 <div>
-                  <h3 className="text-4xl font-bold leading-snug text-white ms-4">
+                  <h3 className="text-4xl font-bold leading-snug text-white ms-4" data-aos="fade-left" data-aos-delay={500}>
                     {chooseUs.title.split(' ').slice(0, 2).join(' ')} <span className="text-[#F97316]">{chooseUs.title.split(' ')[2]}</span>
                     {chooseUs.title.split(' ').slice(3, chooseUs.title.split(' ').length).join(' ')}
                   </h3>
-                  <p className="mt-4 text-gray-400 leading-relaxed ms-4">
+                  <p className="mt-4 text-gray-400 leading-relaxed ms-4" data-aos="fade-left" data-aos-delay={500*1.5}>
                     {chooseUs.subTitle}
                   </p>
 
                   {/* <!-- Features Section --> */}
                   <div className="grid grid-cols-2 gap-5 mt-8">
                     {chooseUs.details.map((detail, index) => (
-                      <div key={index} className="flex items-start space-x-4">
+                      <div key={index} className="flex items-start space-x-4" data-aos="fade-left" data-aos-delay={500*(index+1)}  >
                         <div className="text-[#F97316] text-4xl w-[50px]">
                           <img src={detail.img} alt={detail.title} className="w-full" />
                         </div>
@@ -600,9 +605,9 @@ function WebBody() {
       {
         !setTeamLoading ? (
 
-          <div className="max-w-7xl w-full mx-auto bg-white py-10 px-6">
+          <div className="max-w-7xl w-full mx-auto bg-white py-10 px-6 " >
             {/* Section Heading */}
-            <div className="mb-12 text-center">
+            <div className="mb-12 text-center" data-aos="zoom-in" >
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left">
                 : {team.maintitle?.split(' ')[0]} <span className="text-[#904064]">{team.maintitle?.split(' ').slice(1).join(' ')}</span> :
               </h1>
@@ -611,7 +616,7 @@ function WebBody() {
             {/* Team Members */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
               {team.teamMember.map((member, index) => (
-                <div key={member._id} className="flex flex-col items-center">
+                <div key={member._id} className="flex flex-col items-center" data-aos="fade-up" data-aos-delay={300*index}>
                   <div className={`w-48 md:w-56 bg-gray-200 rounded-t-full overflow-hidden`}>
                     <img
                       src={member.img}
@@ -644,7 +649,7 @@ function WebBody() {
         )
 
       }
-
+     {/* <img src="https://sterlingplusone-backend-1.onrender.com/imageStore/icon123.png" alt="" />  */}
     </div>
   );
 }
