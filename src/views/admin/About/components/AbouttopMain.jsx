@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { GetServiceMain, ServiceMainPost } from "../../Api/servicespage";
+import { GetAbouttopMain, AbouttopMainPost } from "../../Api/About";
 import { fileToBase64 } from "../../Api/Convertbase64";
-const Servicesmane = () => {
-  const [servicesData, setServicesData] = useState({
-    servicesPage: {
+const AbouttopMain = () => {
+  const [aboutData, setAboutData] = useState({
+    abouttopAs: {
       title: "",
       subTitle: "", 
 bgImage:"",
@@ -17,15 +17,16 @@ bgImage:"",
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchServicesData = async () => {
+  const fetchAboutData = async () => {
     try {
       setLoading(true);
-      const response = await GetServiceMain();
+      const response = await GetAbouttopMain();
+      console.log(response,"response");
       if (response) {
-        setServicesData(response);
+        setAboutData(response);
       }
     } catch (err) {
-      setError("Failed to fetch services data");
+      setError("Failed to fetch about data");
       console.error(err);
     } finally {
       setLoading(false);
@@ -33,23 +34,23 @@ bgImage:"",
   };
 
   useEffect(() => {
-    fetchServicesData();
+    fetchAboutData();
   }, []);
 
   const handleInputChange = (e, value) => {
     if (e.target.name === "bgImage") {
-      setServicesData(prev => ({
+      setAboutData(prev => ({
         ...prev,
-        servicesPage: {
-          ...prev.servicesPage,
+        abouttopAs: {
+          ...prev.abouttopAs,
           bgImage: value
         }
       }));
     } else {
-      setServicesData(prev => ({
+      setAboutData(prev => ({
         ...prev,
-        servicesPage: {
-          ...prev.servicesPage,
+        abouttopAs: {
+          ...prev.abouttopAs,
           [e.target.name]: e.target.value
         }
       }));
@@ -58,12 +59,12 @@ bgImage:"",
 
   const handleButtonChange = (e) => {
     const { name, value } = e.target;
-    setServicesData(prev => ({
+    setAboutData(prev => ({
       ...prev,
-      servicesPage: {
-        ...prev.servicesPage,
+      abouttopAs: {
+        ...prev.abouttopAs,
         button: {
-          ...prev.servicesPage.button,
+          ...prev.abouttopAs?.button,
           [name]: value
         }
       }
@@ -74,10 +75,10 @@ bgImage:"",
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await ServiceMainPost(servicesData);
+      const response = await AbouttopMainPost(aboutData);
       if (response) {
         alert('Data saved successfully!');
-        fetchServicesData();
+        fetchAboutData();
       }
     } catch (err) {
       setError('Error saving data');
@@ -109,7 +110,7 @@ bgImage:"",
     <div className=" bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       
       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-xl p-6 sm:p-8 lg:p-10">
-      <h2 className="text-3xl font-bold text-center mb-8">Services Page Hero Settings</h2>
+      <h2 className="text-3xl font-bold text-center mb-8">About Page Hero Settings</h2>
       {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -120,10 +121,10 @@ bgImage:"",
                 bg image
               </label>
               <div className="w-[300px] h-[300px] border-dashed border-2 flex items-center justify-center">
-                {servicesData.servicesPage.bgImage ? (
+                {aboutData?.abouttopAs?.bgImage ? (
                   <label htmlFor="HeroDataBgImage" className="w-[300px] h-[300px] flex items-center justify-center">
                     <img
-                      src={servicesData.servicesPage.bgImage}
+                      src={aboutData?.abouttopAs?.bgImage}
                       alt="Background Image"
                       className="object-cover rounded-lg"
                     />
@@ -155,7 +156,7 @@ bgImage:"",
           <input
             type="text"
             name="title"
-            value={servicesData?.servicesPage?.title || ""}
+            value={aboutData?.abouttopAs?.title || ""}
             onChange={handleInputChange}
             className="w-full p-3 border border-gray-300 rounded-lg"
             placeholder="Enter the title"
@@ -168,7 +169,7 @@ bgImage:"",
           <input
             type="text"
             name="subTitle"
-            value={servicesData?.servicesPage?.subTitle || ""}
+            value={aboutData?.abouttopAs?.subTitle || ""}
             onChange={handleInputChange}
             className="w-full p-3 border border-gray-300 rounded-lg"
             placeholder="Enter the subtitle"
@@ -184,7 +185,7 @@ bgImage:"",
               <input
                 type="text"
                 name="name"
-                value={servicesData.servicesPage.button.name || ""}
+                    value={aboutData?.abouttopAs?.button?.name || ""}
                 onChange={handleButtonChange}
                 className="w-full p-3 border border-gray-300 rounded-lg"
                 placeholder="Enter button text"
@@ -195,7 +196,7 @@ bgImage:"",
               <input
                 type="text"
                 name="link"
-                value={servicesData.servicesPage.button.link || ""}
+                value={aboutData?.abouttopAs?.button?.link || ""}
                 onChange={handleButtonChange}
                 className="w-full p-3 border border-gray-300 rounded-lg"
                 placeholder="Enter button link"
@@ -220,4 +221,4 @@ bgImage:"",
   );
 };
 
-export default Servicesmane;
+export default AbouttopMain;

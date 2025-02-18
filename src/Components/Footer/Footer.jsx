@@ -17,6 +17,25 @@ function Footer() {
     fetchData();
   }, []);
 
+  const listofItems =[
+    {
+      title: "PayPal",
+      icon: paypal,
+    },
+    {
+      title: "Skrill",
+      icon: Skrill,
+    },
+    {
+      title: "Bitcoin",
+      icon: bitcoin,
+    },
+    {
+      title: "American Express",
+      icon: american_express,
+    },
+  ]
+
   if (!footerData) return null;
 
   return (
@@ -80,12 +99,11 @@ function Footer() {
       </div>
       {/* Footer Bottom */}
       <div className="mt-8 border-t border-gray-600 pt-8" >
-        <p className="text-center text-sm mb-4" >{footerData?.copyright}</p>
+        <p className="text-center text-sm mb-4" data-aos="fade-left"  data-aos-offset="100"  data-aos-delay="150" >{footerData?.copyright}</p>
         <div className="flex justify-center gap-4" >
-          <img src={paypal} alt="PayPal" className="w-16 h-auto" />
-          <img src={Skrill} alt="Skrill" className="w-16 h-auto" />
-          <img src={bitcoin} alt="Bitcoin" className="w-16 h-auto" />
-          <img src={american_express} alt="American Express" className="w-16 h-auto" />
+          {listofItems.map((item, index) => (
+            <img src={item.icon} alt={item.title} className="w-16 h-auto"  data-aos="fade-left" data-aos-offset="0"  data-aos-delay={200*(index+1)} />
+          ))} 
         </div>
       </div>
     </div>

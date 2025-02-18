@@ -6,8 +6,9 @@ const Hero = () => {
   const [heroData, setHeroData] = useState({
     heroSectionData: {
       title: "",
-      subTitle: "", 
+      subTitle: "",
       description: "",
+      bgImage: "",
       button: {
         name: "",
         link: ""
@@ -15,6 +16,8 @@ const Hero = () => {
       marqueeList: [{ name: "", icon: "" }]
     }
   });
+  console.log(heroData, "heroData");
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -37,7 +40,7 @@ const Hero = () => {
     fetchHeroData();
   }, []);
 
-  const handleInputChange = (e, section) => {
+  const handleInputChange = (e, section, value) => {
     if (section === "button") {
       setHeroData({
         ...heroData,
@@ -50,13 +53,23 @@ const Hero = () => {
         }
       });
     } else {
-      setHeroData({
-        ...heroData,
-        heroSectionData: {
-          ...heroData.heroSectionData,
-          [e.target.name]: e.target.value
-        }
-      });
+      if (e.target.name === "bgImage") {
+        setHeroData({
+          ...heroData,
+          heroSectionData: {
+            ...heroData.heroSectionData,
+            bgImage: value
+          }
+        });
+      } else {
+        setHeroData({
+          ...heroData,
+          heroSectionData: {
+            ...heroData.heroSectionData,
+            [e.target.name]: e.target.value
+          }
+        });
+      }
     }
   };
 
@@ -140,7 +153,7 @@ const Hero = () => {
         <div className="max-w-5xl mx-auto">
           <div className="animate-pulse space-y-8">
             <div className="h-12 bg-gray-200 rounded-lg w-3/4"></div>
-            
+
             <div className="space-y-4">
               <div className="h-8 bg-gray-200 rounded w-1/4"></div>
               <div className="h-12 bg-gray-200 rounded"></div>
@@ -181,6 +194,41 @@ const Hero = () => {
           <div>
             <h2 className="text-lg font-semibold text-gray-800">Content</h2>
             <div className="space-y-4">
+              {/* get bg image */}
+              <label htmlFor="HeroDataBgImage" className="text-md font-medium text-gray-700">
+                bg image
+              </label>
+              <div className="w-[300px] h-[300px] border-dashed border-2 flex items-center justify-center">
+                {heroData.heroSectionData.bgImage ? (
+                  <label htmlFor="HeroDataBgImage" className="w-[300px] h-[300px] flex items-center justify-center">
+                    <img
+                      src={heroData.heroSectionData.bgImage}
+                      alt="Background Image"
+                      className="object-cover rounded-lg"
+                    />
+                  </label>
+                ) : (
+                  <label htmlFor="HeroDataBgImage" className="w-[300px] h-[300px] border-dashed border-2 flex items-center justify-center">
+                    <p>Click to upload</p>
+                  </label>
+                )}
+                <input
+                  type="file"
+                  name="bgImage"
+                  className="hidden"
+                  id="HeroDataBgImage"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const base64 = await fileToBase64(file);
+                      handleInputChange(e, "bgImage", base64);
+                    }
+                  }}
+                  placeholder="Background Image"
+                />
+              </div>
+
               <input
                 type="text"
                 name="title"

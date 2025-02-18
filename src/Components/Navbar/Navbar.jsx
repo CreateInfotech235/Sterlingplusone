@@ -80,7 +80,7 @@ function Navbar() {
               <ul className="flex flex-wrap justify-center">
                 {nav?.icons ? (
                   nav.icons.map((icon, index) => (
-                    <Link key={index} to={icon.link} target="_blank">
+                    <Link key={index} to={icon.link} target="_blank" >
                       <li className="pe-5" data-aos="zoom-in" data-aos-delay={index * 100}>
                         <img src={icon.Image} alt={`Icon ${index + 1}`} className="w-6 h-6" />
                       </li>

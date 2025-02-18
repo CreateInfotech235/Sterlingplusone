@@ -6,6 +6,7 @@ const ContactMain = () => {
   const [contactData, setContactData] = useState({
     contactPage: {
       title: "",
+      bgImage: "",
       subTitle: "",
       image: "",
       button: {
@@ -53,15 +54,24 @@ const ContactMain = () => {
     fetchContactData();
   }, []);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setContactData(prev => ({
-      ...prev,
-      contactPage: {
-        ...prev.contactPage,
-        [name]: value
-      }
-    }));
+  const handleInputChange = (e, value) => {
+    if (e.target.name === "bgImage") {
+      setContactData(prev => ({
+        ...prev,
+        contactPage: {
+          ...prev.contactPage,
+          bgImage: value
+        }
+      }));
+    } else {
+      setContactData(prev => ({
+        ...prev,
+        contactPage: {
+          ...prev.contactPage,
+          [e.target.name]: value
+        }
+      }));
+    }
   };
 
   const handleButtonChange = (e) => {
@@ -248,6 +258,47 @@ const ContactMain = () => {
       {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
 
       <form onSubmit={handleSubmit} className="space-y-6">
+
+
+
+      <label htmlFor="HeroDataBgImage" className="text-md font-medium text-gray-700">
+                bg image
+              </label>
+              <div className="w-[300px] h-[300px] border-dashed border-2 flex items-center justify-center">
+                {contactData.contactPage.bgImage ? (
+                  <label htmlFor="HeroDataBgImage" className="w-[300px] h-[300px] flex items-center justify-center">
+                    <img
+                      src={contactData.contactPage.bgImage}
+                      alt="Background Image"
+                      className="object-cover rounded-lg"
+                    />
+                  </label>
+                ) : (
+                  <label htmlFor="HeroDataBgImage" className="w-[300px] h-[300px] border-dashed border-2 flex items-center justify-center">
+                    <p>Click to upload</p>
+                  </label>
+                )}
+                <input
+                  type="file"
+                  name="bgImage"
+                  className="hidden"
+                  id="HeroDataBgImage"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const base64 = await fileToBase64(file);
+                      handleInputChange(e, base64);
+                    }
+                  }}
+                  placeholder="Background Image"
+                />
+              </div>
+
+
+
+
+
         <div className="mb-6">
           <label className="block mb-2 text-lg font-medium">Title</label>
           <input

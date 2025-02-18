@@ -61,31 +61,7 @@ function Services() {
 
   return (
     <div>
-      <div className="w-full relative isolate overflow-hidden bg-gray-900 py-24 sm:py-28 lg:py-36">
-        <div
-          aria-hidden="true"
-          className="hidden sm:block sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:transform-gpu sm:blur-3xl"
-        >
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="aspect-[1097/845] w-[40rem] lg:w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-50"
-          />
-        </div>
-        <div
-          aria-hidden="true"
-          className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16"
-        >
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="aspect-[1097/845] w-[40rem] lg:w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-50"
-          />
-        </div>
+      <div className="w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center " style={{ background: `url(${heroData?.bgImage})` ,backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: "rgba(0, 0, 0, 0.4)", backgroundBlendMode: "multiply", height: window.innerWidth > 768 ? window.innerHeight - 230 : null }}>
 
         {/* Content */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -93,40 +69,42 @@ function Services() {
             <h3 className="text-2xl sm:text-3xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.2] sm:leading-[1.4] capitalize">
               {/* Welcome to Sterlingplus */}
             </h3>
-            <h1 className="mt-8 sm:mt-12 text-2xl sm:text-4xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-[1.2] sm:leading-[1.4]">
+            {/* <h1 className="mt-8 sm:mt-12 text-2xl sm:text-4xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-[1.2] sm:leading-[1.4]" data-aos="fade-up" data-aos-offset="100" data-aos-delay="200" >
               {heroData?.title}
-            </h1>
-            <p className="mt-4 sm:mt-6 lg:mt-8 text-base sm:text-lg lg:text-xl text-gray-300 font-medium">
+            </h1> */}
+            <p className="mt-4 sm:mt-6 lg:mt-8 text-base sm:text-lg lg:text-xl text-gray-300 font-medium" data-aos="fade-up" data-aos-offset="100" data-aos-delay="300" >
               {heroData?.subTitle}
             </p>
+{/* 
             <div className="mt-6 sm:mt-12">
-              <Link to={heroData?.button?.link}>
-                <button className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-6 py-3 sm:px-10 sm:py-4 rounded-lg hover:bg-blue-800 whitespace-nowrap">
+              <Link to={heroData?.button?.link} >
+                <button className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-6 py-3 sm:px-10 sm:py-4 rounded-lg hover:bg-blue-800 whitespace-nowrap"   data-aos="fade-up" data-aos-offset="100" data-aos-delay="400">
                   {heroData?.button?.name}
                 </button>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl w-full mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
           {servicesData.map((service, index) => (
-            <div key={index} className="bg-white rounded-lg overflow-hidden">
+            <div key={index} className="bg-white rounded-lg overflow-hidden" data-aos="fade-up" data-aos-offset="200" data-aos-delay={200 * (index + 1)} >
               <div className="relative">
                 <img
                   src={service.img}
                   alt={service.title}
                   className="w-full h-52 object-cover"
                 />
-                <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-40">
-                  <button className="w-20 h-20 bg-white bg-opacity-40 absolute rounded-full flex items-center justify-center shadow-lg">
-                    <GiCommercialAirplane style={{ color: "#F97316", fontSize: "30px" }} />
-                  </button>
-                  <button className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-                    <GiCommercialAirplane style={{ color: "#D23474" }} />
-                  </button>
+                <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-40" >
+                  <div className="flex items-center gap-4"  >
+                    <div className="w-20 h-20 bg-white bg-opacity-40 rounded-full flex items-center justify-center shadow-lg" data-aos="zoom-out" data-aos-delay={300 * (index + 1.5)} >
+                      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg" data-aos="zoom-out" data-aos-delay={350 * (index + 1.5)} >
+                        <GiCommercialAirplane style={{ color: "#F97316", fontSize: "30px" }} />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="py-6 text-justify">

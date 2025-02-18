@@ -8,7 +8,7 @@ import { GetHeroChooseUs } from "../../Api/Webapi/GetHeroChooseus";
 import { GetHeroOurteam } from "../../Api/Webapi/HeroOurteam";
 import { useState } from "react";
 import { Link } from "react-router";
-
+import CursorComponent from "../CursorComponent/CursorComponent";
 function WebBody() {
   const [loading, setLoading] = useState(true);
   const [setHeroLoading, setSetHeroLoading] = useState(true);
@@ -209,39 +209,13 @@ function WebBody() {
   }
 
   return (
-    <div>
+    <div >
+
       {
         !setHeroLoading ? (
           <>
-            <div className="w-full relative isolate overflow-hidden bg-gray-900 py-12 sm:py-24">
-              <div
-                aria-hidden="true"
-                className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
-              >
-                <div
-                  style={{
-                    clipPath:
-                      "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-                  }}
-                  className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-50"
-               data-aos="zoom-in-up"
-               />
-              </div>
-              <div
-                aria-hidden="true"
-                className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0"
-              >
-                <div
-                  style={{
-                    clipPath:
-                      "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-                  }}
-                  className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-50"
-                  data-aos="zoom-in-up"
-                />
-                
-              </div>
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center " style={{ background: `url(${hero?.bgImage})` ,backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center',backgroundColor: "rgba(0, 0, 0, 0.4)",backgroundBlendMode: "multiply", height: window.innerWidth > 768 ? window.innerHeight-230 : null }}>
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
                 <div className="text-center">
                   <h3 className="text-2xl sm:text-3xl lg:text-5xl tracking-tight text-white leading-tight capitalize" data-aos="zoom-in-up" data-aos-delay={900}>
                     {hero?.title}
@@ -252,11 +226,11 @@ function WebBody() {
                   <p className="mt-4 text-sm sm:text-base lg:text-xl text-gray-300 font-medium" data-aos="zoom-in-up" data-aos-delay={1100}>
                     {hero?.description}
                   </p>
-                  <div className="mt-6 flex flex-col sm:flex-row sm:justify-center items-center" data-aos="zoom-in-up" data-aos-delay={1200}>
+                  {/* <div className="mt-6 flex flex-col sm:flex-row sm:justify-center items-center" data-aos="zoom-in-up" data-aos-delay={1200}>
                     <Link to={hero?.button?.link} className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 rounded-lg hover:bg-blue-800 whitespace-nowrap">
                       {hero?.button?.name}
                     </Link>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -264,9 +238,9 @@ function WebBody() {
               <div className="scroll">
                 <div>
                   {hero?.marqueeList?.map((item, index) => (
-                    <React.Fragment key={item._id} data-aos="zoom-in-up" data-aos-delay={1300}  >
-                      <h3 className="category" data-aos="zoom-in" data-aos-delay={1400}>{item.name}</h3>
-                      <h3 className="category" data-aos="zoom-in" data-aos-delay={1500}>
+                    <React.Fragment key={item._id} data-aos="zoom-in-up" data-aos-offset="0" data-aos-delay={1300}  >
+                      <h3 className="category" data-aos="zoom-in" data-aos-offset="0" data-aos-delay={1400}>{item.name}</h3>
+                      <h3 className="category" data-aos="zoom-in" data-aos-offset="0" data-aos-delay={1500}>
                         {item.icon === 'FaRegStar' ? <FaRegStar /> : <FaBox />}
                       </h3>
                     </React.Fragment>
@@ -274,9 +248,9 @@ function WebBody() {
                 </div>
                 <div>
                   {hero?.marqueeList?.map((item, index) => (
-                    <React.Fragment key={item._id} data-aos="zoom-in-up" data-aos-delay={1300}  >
-                      <h3 className="category" data-aos="zoom-in" data-aos-delay={1400}>{item.name}</h3>
-                      <h3 className="category" data-aos="zoom-in" data-aos-delay={1500}>
+                    <React.Fragment key={item._id} data-aos="zoom-in-up" data-aos-offset="0" data-aos-delay={1300}  >
+                      <h3 className="category" data-aos="zoom-in" data-aos-offset="0" data-aos-delay={1400}>{item.name}</h3>
+                      <h3 className="category" data-aos="zoom-in" data-aos-offset="0" data-aos-delay={1500}>
                         {item.icon === 'FaRegStar' ? <FaRegStar /> : <FaBox />}
                       </h3>
                     </React.Fragment>
@@ -350,7 +324,7 @@ function WebBody() {
 
                 {/* Right Column: Hero Section */}
                 <div>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small text-black leading-tight text-center md:text-left flex flex-wrap text-center" data-aos="fade-left"   >
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small text-black leading-tight text-center md:text-left flex flex-wrap text-center" data-aos="fade-left" data-aos-delay={200*1} >
                     {services?.subTitle?.split(' ')[0] || ''}  <span className="text-[#F97316] small mx-3">{services?.subTitle?.split(' ')[1] || ''}</span>
                     {services?.subTitle?.split(' ').slice(2).join(' ') || ''}
                   </h1>

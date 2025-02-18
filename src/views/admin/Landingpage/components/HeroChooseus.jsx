@@ -7,7 +7,7 @@ const HeroChooseUs = () => {
     heroChooseUs: {
       maintitle: "",
       mainImage: "",
-      childImage: "",
+      childImage  : "",
       thirdImage: "",
       title: "",
       subTitle: "",

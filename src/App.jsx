@@ -12,12 +12,15 @@ import Protected from "./components_admin/Protected/Protected";
 import AOS from 'aos';
 import { useEffect } from "react";
 import 'aos/dist/aos.css';
+
+import './App.css';
 function App() {
 
   useEffect(() => {
     setTimeout(() => {
       AOS.init({
         once: true,
+        offset: 100,
       });
     }, 500);
   }, []);
@@ -26,7 +29,7 @@ function App() {
     <>
       <Routes>
         <Route element={<UserLayout />}>
-          <Route path="/" element={<WebBody />} />
+          <Route path="/" element={ <WebBody />} />
           <Route path="/services" element={<Services />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />

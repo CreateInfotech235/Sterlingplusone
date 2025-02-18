@@ -158,84 +158,59 @@ function Blog() {
   return (
     <div>
 
-      <div className="w-full relative isolate overflow-hidden bg-gray-900 py-24 sm:py-28 lg:py-36">
-
-        <div
-          aria-hidden="true"
-          className="hidden sm:block sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:transform-gpu sm:blur-3xl"
-        >
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="aspect-[1097/845] w-[40rem] lg:w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-50"
-          />
-        </div>
-        <div
-          aria-hidden="true"
-          className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16"
-        >
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="aspect-[1097/845] w-[40rem] lg:w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-50"
-          />
-        </div>
-
+      <div className="w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center " style={{ background: `url(${blogmain?.bgImage})` ,backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center',backgroundColor: "rgba(0, 0, 0, 0.4)",backgroundBlendMode: "multiply", height: window.innerWidth > 768 ? window.innerHeight-230 : null }}>
         {/* Content */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
 
-            <h1 className="mt-8 sm:mt-12 text-2xl sm:text-4xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-[1.2] sm:leading-[1.4]">
+            {/* <h1 className="mt-8 sm:mt-12 text-2xl sm:text-4xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-[1.2] sm:leading-[1.4]" data-aos="fade-up" data-aos-offset="0" data-aos-delay="500" >
               {blogmain?.title}
 
-            </h1>
-            <p className="mt-4 sm:mt-6 lg:mt-8 text-base sm:text-lg lg:text-xl text-gray-300 font-medium">
+            </h1> */}
+            <p className="mt-4 sm:mt-6 lg:mt-8 text-base sm:text-lg lg:text-xl text-gray-300 font-medium" data-aos="fade-up" data-aos-offset="0" data-aos-delay="600" >
               {blogmain?.subTitle}
             </p>
-            <div className="mt-6 sm:mt-12">
+            {/* <div className="mt-6 sm:mt-12">
               {blogmain?.button?.map((btn, index) => (
                 <>
-                  <Link to={btn?.link}>
+                  <Link to={btn?.link} data-aos="fade-up" data-aos-offset="0" data-aos-delay={700*(index+1)} >
                     <button className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-6 py-3 sm:px-10 sm:py-4 rounded-lg hover:bg-blue-800 whitespace-nowrap">
                       {btn?.name}
                     </button>
                   </Link>
                 </>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
-      <div className="max-w-screen-xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-xl mx-auto py-8 px-4 sm:px-6 lg:px-8" >
         {/* <!-- Main Grid Layout --> */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* <!-- Left Content --> */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2" >
             {/* <!-- Article 1 --> */}
-            <div className="bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+            <div >
               <img
                 src={blog?.image}
                 alt="Starcraft Tournament"
-                className="w-full object-cover"
+                className="w-full object-cover  shadow-lg rounded-lg"
+                data-aos="fade-right" data-aos-offset="50" data-aos-delay="600"
               />
             </div>
             {/* <!-- Quote --> */}
-            <div className="rounded-lg mt-2 text-2xl font-bold noto small">
+            <div className="rounded-lg mt-2 text-2xl font-bold noto small" data-aos="fade-up" data-aos-offset="0" data-aos-delay="700">
               {blog?.title}
             </div>
-            <div className="rounded-lg mt-1 text-xl">
+            <div className="rounded-lg mt-1 text-xl" data-aos="fade-up" data-aos-offset="0" data-aos-delay="800">
               {blog?.subTitle}
             </div>
-            <div className="rounded-lg mt-1 text-gray-600 text-justify text-base">
+            <div className="rounded-lg mt-1 text-gray-600 text-justify text-base" data-aos="fade-up" data-aos-offset="0" data-aos-delay="900">
               {blog?.description}
             </div>
 
-            <div className="flex flex-col lg:flex-row mt-4 items-center bg-gray-100 rounded-md border">
+            <div className="flex flex-col lg:flex-row mt-4 items-center bg-gray-100 rounded-md border" data-aos="fade-up" data-aos-offset="0" data-aos-delay="1000">
               <div className="bg-orange-500 h-full rounded-md flex items-center justify-center">
                 <div className="px-8 py-10">
                   <FaQuoteRight style={{ color: "#fff", fontSize: "50px" }} />
@@ -249,18 +224,18 @@ function Blog() {
             </div>
 
             {/* <!-- Article 2 --> */}
-            <div className="bg-gray-800 shadow-lg mt-5 rounded-lg overflow-hidden">
+            <div className="bg-gray-800 shadow-lg mt-5 rounded-lg overflow-hidden" data-aos="fade-up" data-aos-offset="0" data-aos-delay="1100">
               <img
                 src={blog?.subImage}
                 alt="Dota Madness"
                 className="w-full object-cover"
               />
             </div>
-            <div className="rounded-lg mt-3 text-gray-600 text-justify text-base">
+            <div className="rounded-lg mt-3 text-gray-600 text-justify text-base" data-aos="fade-up" data-aos-offset="0" data-aos-delay="1200">
               {blog?.subDescription}
             </div>
 
-            <div className="flex flex-wrap items-center mt-3 gap-4">
+            <div className="flex flex-wrap items-center mt-3 gap-4" data-aos="fade-up" data-aos-offset="0" data-aos-delay="100">
               <div className="flex items-center">
                 <span className="mr-2">Follow Us:</span>
                 {
@@ -271,7 +246,6 @@ function Blog() {
                         alt=""
                         className="w-10 h-10 mr-2 grayscale-[100%] invert"
                       />
-
                     </Link>
                   ))
                 }
@@ -287,7 +261,7 @@ function Blog() {
           </div>
 
           {/* <!-- Right Sidebar --> */}
-          <div className="lg:sticky lg:top-24 h-fit">
+          <div className="lg:sticky lg:top-24 h-fit" >
             {/* <!-- Sidebar Top --> */}
             <div>
               <label
@@ -296,7 +270,7 @@ function Blog() {
               >
                 Search
               </label>
-              <div className="relative">
+              <div className="relative" data-aos="fade-up" data-aos-offset="50" data-aos-delay="600">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <svg
                     className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -333,7 +307,7 @@ function Blog() {
             </div>
 
             {/* <!-- Categories --> */}
-            <div className="bg-gray-200 mt-4 rounded-lg p-4">
+            <div className="bg-gray-200 mt-4 rounded-lg p-4" data-aos="fade-up"  data-aos-delay="900">
               <h3 className="text-lg font-bold mb-4">{blogPageSideSection?.blogPageSideSection?.Categorytitle || "Categories"}</h3>
               <div className="space-y-4">
                 {blogPageSideSection?.blogPageSideSection?.topCategory?.map((category, index) => (
@@ -346,7 +320,7 @@ function Blog() {
             </div>
 
             {/* <!-- Gallery --> */}
-            <div className="bg-gray-200 mt-4 rounded-lg p-4">
+            <div className="bg-gray-200 mt-4 rounded-lg p-4" data-aos="fade-up" data-aos-offset="0" data-aos-delay="1000">
               <h3 className="text-lg font-bold mb-4">{blogPageSideSection?.blogPageSideSection?.gallerytitle || "Gallery"}</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {blogPageSideSection?.blogPageSideSection?.galleryImage?.map((image, index) => (
@@ -355,6 +329,7 @@ function Blog() {
                     src={image || "default-image-path.jpg"}
                     alt={`Gallery ${index + 1}`}
                     className="w-full h-[88px] object-cover rounded-md"
+                    data-aos="fade-up" data-aos-offset="0" data-aos-delay={(300*(index+1))+1000}
                   />
                 ))}
               </div>

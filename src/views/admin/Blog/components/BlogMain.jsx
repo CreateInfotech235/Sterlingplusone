@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { GetBlogPage, BlogPagePost } from "../../Api/blog";
-
+import { fileToBase64 } from "../../Api/Convertbase64";
 const BlogMain = () => {
   const [blogData, setBlogData] = useState({
     _id: "",
     blogPage: {
       title: "",
       subTitle: "",
+      bgImage: "",
       button: [
         {
           name: "",
@@ -38,15 +39,24 @@ const BlogMain = () => {
     fetchBlogData();
   }, []);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setBlogData((prev) => ({
-      ...prev,
-      blogPage: {
-        ...prev.blogPage,
-        [name]: value
-      }
-    }));
+  const handleInputChange = (e, value) => {
+    if (e.target.name === "bgImage") {
+      setBlogData((prev) => ({
+        ...prev,
+        blogPage: {
+          ...prev.blogPage,
+          bgImage: value
+        }
+      }));
+    } else {
+      setBlogData((prev) => ({
+        ...prev,
+        blogPage: {
+          ...prev.blogPage,
+          [e.target.name]: e.target.value
+        }
+      }));
+    }
   };
 
   const handleButtonChange = (e, index) => {
@@ -79,6 +89,7 @@ const BlogMain = () => {
         blogPage: {
           title: blogData.blogPage.title,
           subTitle: blogData.blogPage.subTitle,
+          bgImage: blogData.blogPage.bgImage,
           button: blogData.blogPage.button
         }
       });
@@ -88,6 +99,7 @@ const BlogMain = () => {
         blogPage: {
           title: blogData.blogPage.title,
           subTitle: blogData.blogPage.subTitle,
+          bgImage: blogData.blogPage.bgImage,
           button: blogData.blogPage.button
         }
       });
@@ -144,6 +156,44 @@ const BlogMain = () => {
         {error && <div className="text-red-500 text-center mb-6 p-4 bg-red-50 rounded-lg">{error}</div>}
 
         <form onSubmit={handleSubmit} className="space-y-8">
+
+
+        <label htmlFor="HeroDataBgImage" className="text-md font-medium text-gray-700">
+                bg image
+              </label>
+              <div className="w-[300px] h-[300px] border-dashed border-2 flex items-center justify-center">
+                {blogData.blogPage.bgImage ? (
+                  <label htmlFor="HeroDataBgImage" className="w-[300px] h-[300px] flex items-center justify-center">
+                    <img
+                      src={blogData.blogPage.bgImage}
+                      alt="Background Image"
+                      className="object-cover rounded-lg"
+                    />
+                  </label>
+                ) : (
+                  <label htmlFor="HeroDataBgImage" className="w-[300px] h-[300px] border-dashed border-2 flex items-center justify-center">
+                    <p>Click to upload</p>
+                  </label>
+                )}
+                <input
+                  type="file"
+                  name="bgImage"
+                  className="hidden"
+                  id="HeroDataBgImage"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const base64 = await fileToBase64(file);
+                      handleInputChange(e, base64);
+                    }
+                  }}
+                  placeholder="Background Image"
+                />
+              </div>
+
+
+
           <div className="space-y-4">
             <label htmlFor="title" className="block text-xl font-semibold text-gray-700">
               Title

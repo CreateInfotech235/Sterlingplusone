@@ -34,3 +34,30 @@ export const AboutPagePost = async (data) => {
     throw error; // Rethrow error for caller to handle
   }
 };
+
+export const GetAbouttopMain = async () => {
+  try {
+    const response = await axios.get(
+      "https://sterlingplusone-backend-1.onrender.com/web/abouttopmain"
+    );
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      return response.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const AbouttopMainPost = async (data) => {
+  try {
+    const response = await axios.post(
+      "https://sterlingplusone-backend-1.onrender.com/web/abouttopmain",
+      data
+    );
+    console.log(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+};

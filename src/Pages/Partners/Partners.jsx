@@ -33,7 +33,7 @@ function Partners() {
     <section className="bg-white dark:bg-gray-900">
     <div className="py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
       <div>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left" data-aos="fade-left" data-aos-offset="0" data-aos-delay="500" >
           {/* : Our <span className="text-[#904064]">Partners</span> : */}
           : {partners?.title?.split(' ')[0] || ''}
               <span className="text-[#904064] mx-2">
@@ -45,7 +45,7 @@ function Partners() {
       </div>
       <div className="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
         {partners?.ourPartnerSection?.map((partner, index) => (
-          <Link to={partner.link} key={index} className="flex justify-center items-center">
+          <Link to={partner.link} key={index} className="flex justify-center items-center" data-aos="fade-up" data-aos-offset="0" data-aos-delay={(200*(index+1))+500} >
             <img src={partner.img} alt="" />
           </Link>
         ))}
