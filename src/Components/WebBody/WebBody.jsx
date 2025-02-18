@@ -623,7 +623,7 @@ function WebBody() {
         )
 
       }
-     {/* <img src="https://sterlingplusone-backend-1.onrender.com/imageStore/icon123.png" alt="" />  */}
+     {/* <img src="http://localhost:8001/imageStore/icon123.png" alt="" />  */}
     </div>
   );
 }

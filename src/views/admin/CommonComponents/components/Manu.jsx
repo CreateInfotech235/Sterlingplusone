@@ -218,7 +218,7 @@ const Manu = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Logo Path</label>
                 <input
                   type="text"
-                    value={menuData?.logo?.path}
+                  value={menuData?.logo?.path}
                   onChange={(e) => handleLogoChange("path", e.target.value)}
                   className="w-full p-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -252,6 +252,77 @@ const Manu = () => {
                   type="text"
                   value={menuData?.favicon?.path}
                   onChange={(e) => handleFaviconChange("path", e.target.value)}
+                  className="w-full p-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+            </div>
+          </div>
+
+
+
+          {/* Menu Items Section */}
+          <div className="mb-8">
+            <h3 className="text-xl font-semibold mb-4">Menu Items</h3>
+            {menuData.menuList.map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-col md:flex-row gap-4 mb-4 items-end bg-gray-50 p-4 rounded-lg border"
+              >
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                  <input
+                    type="text"
+                    value={item.name}
+                    onChange={(e) => handleMenuItemChange(index, 'name', e.target.value)}
+                    className="w-full p-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Path</label>
+                  <input
+                    type="text"
+                    value={item.path}
+                    onChange={(e) => handleMenuItemChange(index, 'path', e.target.value)}
+                    className="w-full p-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveMenuItem(index)}
+                  className="text-red-500 text-sm mt-2 md:mt-0"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={handleAddMenuItem}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-sm"
+            >
+              Add Menu Item
+            </button>
+          </div>
+
+          {/* Button Section */}
+          <div className="mb-8">
+            <h3 className="text-xl font-semibold mb-4">Button</h3>
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Text</label>
+                <input
+                  type="text"
+                  value={menuData.button.text}
+                  onChange={(e) => handleButtonChange('text', e.target.value)}
+                  className="w-full p-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Link</label>
+                <input
+                  type="text"
+                  value={menuData.button.link}
+                  onChange={(e) => handleButtonChange('link', e.target.value)}
                   className="w-full p-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
