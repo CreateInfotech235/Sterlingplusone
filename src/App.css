@@ -117,3 +117,12 @@
 .cscale, .cscale3, .cscale5, .cscale20, .cscale10 {
   transition: transform 0.3s ease-in-out !important;
 }
+
+
+.ta:hover {
+  color: #973C63 !important;
+}
+
+.tah{
+  color: #973C63 !important;
+}
