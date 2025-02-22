@@ -120,7 +120,7 @@ function Navbar() {
                     <Link
                       key={link._id}
                       to={link.path}
-                      className={`${getLinkClass(link.path)} text-[18px] font-bold  transition-all duration-300 ` }
+                      className={`${getLinkClass(link.path)} text-[18px] font-bold  transition-all duration-300 ${window.location.pathname==link.path ? "tah" : "ta"}  ` }
                       data-aos="zoom-in" data-aos-delay={index * 100}
                     >
                       {link.name}
