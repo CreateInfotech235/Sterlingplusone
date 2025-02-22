@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Vectore from "../../assets/image (39).png";
 import { CiLocationOn } from "react-icons/ci";
 import { IoCallOutline, IoMailOpenOutline } from "react-icons/io5";
 import { GetContactPage, sendContactUs } from "../../Api/Webapi/Getcontactsection";
 import { Link } from "react-router";
 
+
+import $ from 'jquery';
+import 'jquery.ripples';
+
+import bg from "../../assets/Screenshot_2024-12-18_1655261.png";
+
 function Contact() {
+  const heroRef = useRef(null);
   const [contactData, setContactData] = useState({
     title: "",
     subTitle: "",
@@ -22,6 +29,8 @@ function Contact() {
     contact: "",
     message: ""
   });
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +55,52 @@ function Contact() {
       [name]: value
     }));
   };
+
+
+  const rippl = (id) => {
+    $(id).ripples({
+      dropRadius: 10,        // Size of the ripple drops
+      perturbance: 0.03,     // Intensity of the ripple effect
+      interactive: true,     // Enables interaction with the mouse
+      speed: 0.5,            // Speed of the ripple animation
+      color: 'rgba(255, 255, 255, 0.5)', // Ripple color
+      opacity: 0.5,          // Opacity of the ripple effect
+      delay: 0.5,            // Delay before the ripple starts
+      duration: 1,         // Duration of the ripple animation
+      size: 10               // Size of the ripple effect
+    });
+
+  }
+
+
+
+  
+  useEffect(() => {
+    console.log(contactData, "bg");
+
+    if (contactData?.bgImage) {
+      const imgurl = contactData?.bgImage;
+      const img = new Image();
+      img.src = imgurl;
+      img.onload = () => {
+        console.log("123");
+
+        $("#contact").ripples('destroy');
+        const showRipple = heroRef.current;
+        showRipple.style.backgroundImage = `url(${img.src})`;
+        setTimeout(() => {
+          rippl('#contact');
+        }, 10)
+      }
+    }
+  }, [contactData])
+
+  useEffect(() => {
+    rippl('#contact');
+  }, [loading])
+
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,25 +165,18 @@ function Contact() {
 
   return (
     <div>
-      <div  className="w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center " style={{ background: `url(${contactData?.bgImage})` ,backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: "rgba(0, 0, 0, 0.4)", backgroundBlendMode: "multiply", height: window.innerWidth > 768 ? window.innerHeight - 230 : null }}>
-        {/* Content */}
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+
+      <div className={`w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center `} ref={heroRef} id="contact" style={{ backgroundImage: `url(${bg})`, backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', height: window.innerWidth > 768 ? window.innerHeight - 230 : window.innerHeight - 300 }}>
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full absolute " style={{ zIndex: '11' }}>
           <div className="text-center">
-            {/* <h1 className="mt-8 sm:mt-12 text-2xl sm:text-4xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-[1.2] sm:leading-[1.4]" data-aos="fade-up" data-aos-offset="0" data-aos-delay="500" >
-              {contactData.title}
-            </h1> */}
-            <p className="mt-4 sm:mt-6 lg:mt-8 text-base sm:text-lg lg:text-xl text-gray-300 font-medium" data-aos="fade-up" data-aos-offset="0" data-aos-delay="600" >
-              {contactData.subTitle}
-         
+            <p className="mt-4 text-sm sm:text-base lg:text-xl text-gray-300 font-medium" data-aos="zoom-in-up" data-aos-delay={1100}>
+              {contactData?.subTitle}
             </p>
-            {/* <div className="mt-6 sm:mt-12">
-              <Link to={contactData.button.link}>
-                <button className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-6 py-3 sm:px-10 sm:py-4 rounded-lg hover:bg-blue-800 whitespace-nowrap" data-aos="fade-up" data-aos-offset="0" data-aos-delay="700" >
-                  {contactData.button.name}
-                </button>
-              </Link>
-            </div> */}
           </div>
+        </div>
+        <div className="absolute w-full h-full bg-[rgba(0,0,0,0.5)] z-10">
         </div>
       </div>
 
@@ -138,7 +186,7 @@ function Contact() {
             <div className="mt-8 flex flex-col items-center">
               <div className="w-full flex-1">
                 <div className="mb-12 border-b text-center">
-                  <div className="leading-none px-2 inline-block text-gray-600 small noto text-3xl font-medium bg-white transform" data-aos="fade-right"  data-aos-delay="400" >
+                  <div className="leading-none px-2 inline-block text-gray-600 small noto text-3xl font-medium bg-white transform" data-aos="fade-right" data-aos-delay="400" >
                     {contactData.title}
                   </div>
                 </div>
@@ -152,7 +200,7 @@ function Contact() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    data-aos="fade-right"  data-aos-delay="500"
+                    data-aos="fade-right" data-aos-delay="500"
                   />
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
@@ -162,7 +210,7 @@ function Contact() {
                     value={formData.contact}
                     onChange={handleInputChange}
                     required
-                    data-aos="fade-right"  data-aos-delay="600"
+                    data-aos="fade-right" data-aos-delay="600"
                   />
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
@@ -172,7 +220,7 @@ function Contact() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    data-aos="fade-right"  data-aos-delay="700"
+                    data-aos="fade-right" data-aos-delay="700"
                   />
                   <textarea
                     name="message"
@@ -183,12 +231,12 @@ function Contact() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    data-aos="fade-right"  data-aos-delay="800"
+                    data-aos="fade-right" data-aos-delay="800"
                   />
-                  <button 
+                  <button
                     type="submit"
-                    className="mt-5 tracking-wide font-semibold text-white bg-[#F97316] text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                    data-aos="fade-right"  data-aos-delay="900"
+                    className="mt-5 tracking-wide font-semibold  text-white bg-[#F97316] text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none cscale5"
+                    data-aos="fade-right" data-aos-delay="900"
                   >
                     <span className="ml-2">Submit Now</span>
                   </button>
@@ -199,7 +247,7 @@ function Contact() {
 
           <div className="flex-1 text-center  lg:flex"  >
             <div className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat" >
-              <img src={contactData.image || Vectore} alt="Contact Illustration"  data-aos="fade-right"  data-aos-delay="300" />
+              <img src={contactData.image || Vectore} alt="Contact Illustration" data-aos="fade-right" data-aos-delay="300" />
             </div>
           </div>
         </div>
@@ -208,7 +256,7 @@ function Contact() {
       <div className="max-w-screen-xl mx-auto my-16 px-4">
         <div className="flex flex-wrap justify-center gap-10">
           {contactData.box.map((item, index) => (
-            <div key={item._id} className="flex w-full sm:w-[416px] md:w-[416px] flex-col items-center bg-[#43426A] rounded-lg py-10 px-8 sm:px-16" data-aos="zoom-in"  data-aos-delay={250*(index+1)} >
+            <div key={item._id} className="flex w-full sm:w-[416px] md:w-[416px] flex-col items-center bg-[#43426A] rounded-lg py-10 px-8 sm:px-16 cscale5" data-aos="zoom-in" data-aos-delay={250 * (index + 1)} >
               <h3 className="text-lg font-semibold mt-4 w-14 rounded-full h-14 bg-white flex justify-center items-center">
                 <img src={item.icon} alt="icon" className="w-9 h-9" />
               </h3>

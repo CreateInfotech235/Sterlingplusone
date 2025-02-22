@@ -71,8 +71,8 @@ function Navbar() {
       <div className="bg-[#111827]" >
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center py-5" >
-            <div className="w-full md:w-1/2 text-center md:text-left mb-4 md:mb-0"  data-aos="zoom-in-left">
-              <p className="text-white font-bold">
+          <div className="w-full md:w-1/2 text-center md:text-left mb-4 md:mb-0" data-aos="zoom-in-left">
+              <p className="text-white font-bold transition-colors duration-200 cursor-pointer ctextw" >
                 {nav?.title || <div className="w-48 h-4 bg-gray-300 rounded animate-pulse"></div>}
               </p>
             </div>
@@ -80,8 +80,8 @@ function Navbar() {
               <ul className="flex flex-wrap justify-center">
                 {nav?.icons ? (
                   nav.icons.map((icon, index) => (
-                    <Link key={index} to={icon.link} target="_blank" >
-                      <li className="pe-5" data-aos="zoom-in" data-aos-delay={index * 100}>
+                    <Link key={index} to={icon.link} target="_blank" className="w-7 h-7 ml-2   hover:scale-125 transition-all duration-300" >
+                      <li data-aos="zoom-in" data-aos-delay={index * 100}>
                         <img src={icon.Image} alt={`Icon ${index + 1}`} className="w-6 h-6" />
                       </li>
                     </Link>
@@ -103,9 +103,9 @@ function Navbar() {
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-24">
             <div className="flex items-center">
-              <Link to={manu?.logo?.path || "/"} className="flex-shrink-0" data-aos="zoom-in-left" data-aos-delay={450}>
+            <Link to={manu?.logo?.path || "/"} className="flex-shrink-0   " data-aos="zoom-in-left" data-aos-delay={450}>
                 {manu?.logo?.img ? (
-                  <img src={manu?.logo?.img} className="h-16" alt="Logo" />
+                  <img src={manu?.logo?.img} className="h-16 hover:scale-110 transition-all duration-300" alt="Logo" />
                 ) : (
                   <div className="w-40 h-16 bg-gray-300 rounded animate-pulse"></div>
                 )}
@@ -120,7 +120,7 @@ function Navbar() {
                     <Link
                       key={link._id}
                       to={link.path}
-                      className={`${getLinkClass(link.path)} text-[18px]`}
+                      className={`${getLinkClass(link.path)} text-[18px] font-bold hover:text-[#973C63] transition-all duration-300 ${window.location.pathname==link.path ? "text-[#973C63]" : ""}  ` }
                       data-aos="zoom-in" data-aos-delay={index * 100}
                     >
                       {link.name}
@@ -136,14 +136,21 @@ function Navbar() {
 
             {/* Login/Register Section */}
             <div className="flex items-center lg:space-x-4 md:space-x-2">
-              {manu?.button ? (
-                <Link
-                  to={manu.button.link}
-                  className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-[10px] py-[5px] md:px-[20px] md:py-[11px] rounded-lg hover:bg-blue-800 whitespace-nowrap ml-5"
+            {manu?.button ? (
+                <button
+                  // to={manu.button.link}
+                
+                  className="bg-gradient-to-b from-custom-blue to-custom-pink w-28 h-14 transition-all duration-300   text-white  rounded-lg hover:bg-blue-800 whitespace-nowrap ml-5  text-center transition-all duration-300 flex items-center justify-center  transition-transform  "
                   data-aos="zoom-in" data-aos-delay={450}
+                  onMouseEnter={(e) => {
+                    e.target.style.scale = '1.05';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.scale = '1';
+                  }}
                 >
                   {manu.button.text}
-                </Link>
+                </button>
               ) : (
                 <div className="w-32 h-10 bg-gray-300 rounded animate-pulse ml-5"></div>
               )}

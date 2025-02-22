@@ -45,7 +45,7 @@ function Partners() {
       </div>
       <div className="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
         {partners?.ourPartnerSection?.map((partner, index) => (
-          <Link to={partner.link} key={index} className="flex justify-center items-center" data-aos="fade-up" data-aos-offset="0" data-aos-delay={(200*(index+1))+500} >
+          <Link to={partner.link} key={index} className="flex justify-center items-center cscale10" data-aos="fade-up" data-aos-offset="0" data-aos-delay={(200*(index+1))+500} >
             <img src={partner.img} alt="" />
           </Link>
         ))}

@@ -43,7 +43,7 @@ function Footer() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-gray-600 pb-8">
         {footerData?.section?.map((section, index) => (
           <div key={index} data-aos="fade-left" data-aos-delay={200 * index}>
-            <h2 className="font-bold text-lg mb-4 relative before:content-[''] before:absolute before:w-20 before:h-1 before:bg-[#F97316] before:bottom-[-5px] before:left-0">
+            <h2 className="font-bold text-lg mb-4 relative before:content-[''] before:absolute before:w-20 before:h-1 before:bg-[#F97316] before:bottom-[-5px] before:left-0 ctextw">
               {section?.title}
             </h2>
             <ul>
@@ -68,11 +68,11 @@ function Footer() {
       <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
         {/* Follow Us */}
         <div className="flex flex-col items-center w-full md:w-1/2 md:items-start">
-          <h2 className="font-bold text-lg mb-4 text-center md:text-left" data-aos="fade-UP" data-aos-delay={200}>FOLLOW US</h2>
+          <h2 className="font-bold text-lg mb-4 text-center md:text-left ctextw" data-aos="fade-UP" data-aos-delay={200}>FOLLOW US</h2>
           <div className="flex gap-4">
             {footerData?.socialMedia?.map((social, index) => (
               <>
-                <Link key={index} to={social?.link} className="text-xl" data-aos="fade-up" data-aos-delay={200*index}>
+                <Link key={index} to={social?.link} className="text-xl cscale20" data-aos="fade-up" data-aos-delay={200*index}>
                   <img src={social?.icon} alt={social?.name} style={{ width: '30px'}} />
                 </Link>
               </>
@@ -81,7 +81,7 @@ function Footer() {
         </div>
         {/* Subscribe */}
         <div className="flex flex-col w-full md:w-1/2">
-          <h2 className="font-bold text-lg mb-4 text-center md:text-left" data-aos="fade-left" data-aos-delay={200}>DON'T MISS OUT ON THE LATEST</h2>
+          <h2 className="font-bold text-lg mb-4 text-center md:text-left   ctextw" data-aos="fade-left" data-aos-delay={200}>DON'T MISS OUT ON THE LATEST</h2>
           <form className="flex flex-col sm:flex-row items-center w-full" data-aos="fade-left" data-aos-delay={400}>
             <input
               type="email"

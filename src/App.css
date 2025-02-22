@@ -29,3 +29,91 @@
 /* body {
   cursor: none;
 } */
+
+
+@keyframes textAnimationw {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    text-shadow: 0 0 0px rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+}
+
+
+@keyframes textAnimationb {
+  0% {
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  }
+  50% {
+    text-shadow: 0 0 0px rgba(0, 0, 0, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  }
+}
+
+@keyframes textAnimationb40 {
+  0% {
+    text-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+  }
+  50% {
+    text-shadow: 0 0 0px rgba(0, 0, 0, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+  }
+}
+
+  
+
+
+.ctextw:hover {
+  animation: textAnimationw 1.5s ease-in-out infinite;
+
+}
+
+.ctextb:hover {
+  animation: textAnimationb 1.5s ease-in-out infinite;
+}
+
+.ctextb40:hover {
+  animation: textAnimationb40 1.5s ease-in-out infinite;
+}
+
+.cscale:hover {
+  transform: scale(1.02) !important;
+  /* transition: transform 0.3s !important; */
+}
+
+.cscale3:hover {
+  transform: scale(1.03) !important;
+  /* transition: transform 0.3s !important; */
+}
+
+
+.cscale5:hover {
+  transform: scale(1.05) !important;
+  /* transition: transform 0.3s !important; */
+}
+
+
+.cscale10:hover {
+  transform: scale(1.1) !important;
+  /* transition: transform 0.3s !important; */
+}
+
+.cscale20:hover {
+  transform: scale(1.2) !important;
+  /* transition: transform 0.3s !important; */
+}
+
+
+
+
+.cscale, .cscale3, .cscale5, .cscale20, .cscale10 {
+  transition: transform 0.3s ease-in-out !important;
+}

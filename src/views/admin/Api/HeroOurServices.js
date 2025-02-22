@@ -18,17 +18,6 @@ export const GetHeroOurServices = async () => {
 
 export const HeroOurServicesPost = async (data) => {
   try {
-    console.log(data.heroOurServices.services);
-
-    for (let i = 0; i < data.heroOurServices.services.length; i++) {
-      console.log(data.heroOurServices.services[i]);
-      const imageurl = await axios.post(
-        "https://sterlingplusone-backend-1.onrender.com/imageStore/" +
-          data.heroOurServices.services[i].image
-      );
-      console.log(imageurl);
-    }
-
     const response = await axios.post(
       "https://sterlingplusone-backend-1.onrender.com/web/heroourservices",
       data

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Vectore from "../../assets/image (40).png";
 import Xpo from "../../assets/image (26).png";
 import Logistics from "../../assets/image (27).png";
@@ -9,7 +9,17 @@ import { GetAboutPage, GetAbouttopMain } from "../../Api/Webapi/GetAboutsection"
 import Partners from "../Partners/Partners";
 import { Link } from "react-router";
 
+
+
+import $ from 'jquery';
+import 'jquery.ripples';
+
+import bg from "../../assets/Screenshot_2024-12-18_1655261.png";
+
+
 function About() {
+  const heroRef = useRef(null);
+
   const [aboutData, setAboutData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [abouttopData, setAbouttopData] = useState(null);
@@ -30,6 +40,54 @@ function About() {
     };
     fetchData();
   }, []);
+
+
+
+
+  const rippl = (id) => {
+    $(id).ripples({
+      dropRadius: 10,        // Size of the ripple drops
+      perturbance: 0.03,     // Intensity of the ripple effect
+      interactive: true,     // Enables interaction with the mouse
+      speed: 0.5,            // Speed of the ripple animation
+      color: 'rgba(255, 255, 255, 0.5)', // Ripple color
+      opacity: 0.5,          // Opacity of the ripple effect
+      delay: 0.5,            // Delay before the ripple starts
+      duration: 1,         // Duration of the ripple animation
+      size: 10               // Size of the ripple effect
+    });
+
+  }
+
+
+
+
+  useEffect(() => {
+    console.log(abouttopData, "bg");
+
+    if (abouttopData?.bgImage) {
+      const imgurl = abouttopData?.bgImage;
+      const img = new Image();
+      img.src = imgurl;
+      img.onload = () => {
+        console.log("123");
+
+        $("#abouttop").ripples('destroy');
+        const showRipple = heroRef.current;
+        showRipple.style.backgroundImage = `url(${img.src})`;
+        setTimeout(() => {
+          rippl('#abouttop');
+        }, 10)
+      }
+    }
+  }, [abouttopData])
+
+  useEffect(() => {
+    rippl('#abouttop');
+  }, [loading])
+
+
+
 
 
   if (loading) {
@@ -101,33 +159,26 @@ function About() {
   return (
     <div>
 
-      <div className="w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center " style={{ background: `url(${abouttopData?.bgImage})` ,backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: "rgba(0, 0, 0, 0.4)", backgroundBlendMode: "multiply", height: window.innerWidth > 768 ? window.innerHeight - 230 : null }}>
-        {/* Content */}
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className={`w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center `} ref={heroRef} id="abouttop" style={{ backgroundImage: `url(${bg})`, backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', height: window.innerWidth > 768 ? window.innerHeight - 230 : window.innerHeight - 300 }}>
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full absolute " style={{ zIndex: '11' }}>
           <div className="text-center">
-            {/* <h1 className="mt-8 sm:mt-12 text-2xl sm:text-4xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-[1.2] sm:leading-[1.4]" data-aos="fade-up" data-aos-offset="0" data-aos-delay="500" >
-              {abouttopData?.title}
-            </h1> */}
-            <p className="mt-4 sm:mt-6 lg:mt-8 text-base sm:text-lg lg:text-xl text-gray-300 font-medium" data-aos="fade-up" data-aos-offset="0" data-aos-delay="600" >
+            <p className="mt-4 text-sm sm:text-base lg:text-xl text-gray-300 font-medium" data-aos="zoom-in-up" data-aos-delay={1100}>
               {abouttopData?.subTitle}
             </p>
-            {/* <div className="mt-6 sm:mt-12">
-              <Link to={abouttopData?.button?.link}>
-                <button className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-6 py-3 sm:px-10 sm:py-4 rounded-lg hover:bg-blue-800 whitespace-nowrap" data-aos="fade-up" data-aos-offset="0" data-aos-delay="700" >
-                  {abouttopData?.button?.name}
-                </button>
-              </Link>
-            </div> */}
           </div>
         </div>
+        <div className="absolute w-full h-full bg-[rgba(0,0,0,0.5)] z-10">
+        </div>
       </div>
+
 
 
 
       <div className="max-w-7xl w-full mx-auto bg-white px-4">
         {/* Header Section */}
         <div className="mt-12" data-aos="fade-left" data-aos-delay="500">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold"  >
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold "  >
             : {aboutData?.mainTitle?.split(' ')[0] || ''} <span className="text-[#904064] mx-2">{aboutData?.mainTitle?.split(' ')[1] || ''}</span> {aboutData?.mainTitle?.split(' ').slice(2, aboutData?.mainTitle?.split(' ').length).join(' ') || ''} :
           </h1>
         </div>
@@ -149,7 +200,7 @@ function About() {
               </p>
             ))}
             <div className="mt-6 flex justify-center sm:justify-start gap-4">
-              <Link to={aboutData.button.link} className="px-6 py-2 bg-[#F97316] text-white font-semibold rounded-md">
+              <Link to={aboutData.button.link} className="px-6 py-2 bg-[#F97316] text-white font-semibold rounded-md cscale5">
                 {aboutData.button.name}
               </Link>
               <div className="flex items-center text-gray-600">
@@ -159,7 +210,7 @@ function About() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-6">
               {aboutData.achievements.map((achievement, index) => (
-                <div key={index} className="flex items-center justify-center flex-col bg-gray-50 shadow rounded-lg p-4" data-aos="zoom-in" data-aos-delay={(250*(index+1))+500}>
+                <div key={index} className="flex items-center justify-center flex-col bg-gray-50 shadow rounded-lg p-4 cscale5" data-aos="zoom-in" data-aos-delay={(250 * (index + 1)) + 500}>
                   <h3 className="text-2xl font-bold text-orange-500">{achievement.title}</h3>
                   <p className="mt-1 text-gray-600">{achievement.description}</p>
                 </div>
@@ -169,7 +220,7 @@ function About() {
         </div>
 
         {/* Statistics Section */}
-        <div className="bg-[#F7F7F7] py-16" data-aos="fade-up" data-aos-delay="500">
+        <div className="bg-[#F7F7F7] py-16 cscale3" data-aos="fade-up" data-aos-delay="500">
           <div className="max-w-7xl w-full mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-8">
               {/* Left Text Section */}
@@ -184,7 +235,7 @@ function About() {
               {/* Right Progress Section */}
               <div>
                 {aboutData.services.map((service, index) => (
-                  <div key={index} className="mb-4" data-aos="fade-left" data-aos-delay={(250*(index+1))+700}>
+                  <div key={index} className="mb-4" data-aos="fade-left" data-aos-delay={(250 * (index + 1)) + 700}>
                     <div className="flex justify-between">
                       <span className="text-gray-800 font-medium text-[23px]">
                         {service.title}

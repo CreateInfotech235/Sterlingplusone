@@ -8,7 +8,12 @@ import { GetHeroChooseUs } from "../../Api/Webapi/GetHeroChooseus";
 import { GetHeroOurteam } from "../../Api/Webapi/HeroOurteam";
 import { useState } from "react";
 import { Link } from "react-router";
+import $ from 'jquery';
+import 'jquery.ripples';
 import CursorComponent from "../CursorComponent/CursorComponent";
+import bg from "../../assets/Screenshot_2024-12-18_1655261.png";
+
+
 function WebBody() {
   const [loading, setLoading] = useState(true);
   const [setHeroLoading, setSetHeroLoading] = useState(true);
@@ -43,6 +48,26 @@ function WebBody() {
   });
 
   const [isPlaying, setIsPlaying] = useState(false);
+
+
+  const heroRef = useRef(null);
+
+  const rippl = (id) => {
+    $(id).ripples({
+      dropRadius: 10,        // Size of the ripple drops
+      perturbance: 0.03,     // Intensity of the ripple effect
+      interactive: true,     // Enables interaction with the mouse
+      speed: 0.5,            // Speed of the ripple animation
+      color: 'rgba(255, 255, 255, 0.5)', // Ripple color
+      opacity: 0.5,          // Opacity of the ripple effect
+      delay: 0.5,            // Delay before the ripple starts
+      duration: 1,         // Duration of the ripple animation
+      size: 10               // Size of the ripple effect
+    });
+
+  }
+
+
   const videoRef = useRef(null);
 
   const handlePlayPause = () => {
@@ -62,7 +87,7 @@ function WebBody() {
         const heroData = await GetHeroSection();
         setHero(heroData);
         // setTimeout(() => {
-          setSetHeroLoading(false);
+        setSetHeroLoading(false);
         // }, 7000);
       } catch (error) {
         console.log(error);
@@ -188,25 +213,27 @@ function WebBody() {
     fetchData();
   }, []);
 
-  if (0) {
-    return (
-      <div className="animate-pulse">
-        {/* Hero Section Skeleton */}
+
+  useEffect(() => {
+    if (hero?.bgImage) {
+      const imgurl = hero?.bgImage;
+      const img = new Image();
+      img.src = imgurl;
+      img.onload = () => {
+        $("#hero").ripples('destroy');
+        const showRipple = heroRef.current;
+        showRipple.style.backgroundImage = `url(${img.src})`;
+        setTimeout(() => {
+          rippl('#hero');
+        }, 10)
+      }
+    }
+  }, [hero])
 
 
-        {/* Services Section Skeleton */}
-
-
-        {/* Plans Section Skeleton */}
-
-
-        {/* Choose Us Section Skeleton */}
-
-        {/* Team Section Skeleton */}
-
-      </div>
-    );
-  }
+  useEffect(() => {
+    rippl('#hero');
+  }, [setHeroLoading])
 
   return (
     <div >
@@ -214,8 +241,9 @@ function WebBody() {
       {
         !setHeroLoading ? (
           <>
-            <div className="w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center " style={{ background: `url(${hero?.bgImage})` ,backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center',backgroundColor: "rgba(0, 0, 0, 0.4)",backgroundBlendMode: "multiply", height: window.innerWidth > 768 ? window.innerHeight-230 : null }}>
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+            <div className={`w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center `} ref={heroRef} id="hero" style={{ backgroundImage: `url(${bg})`, backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', height: window.innerWidth > 768 ? window.innerHeight - 230 : window.innerHeight - 300 }}>
+
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full absolute " style={{ zIndex: '11' }}>
                 <div className="text-center">
                   <h3 className="text-2xl sm:text-3xl lg:text-5xl tracking-tight text-white leading-tight capitalize" data-aos="zoom-in-up" data-aos-delay={900}>
                     {hero?.title}
@@ -233,7 +261,11 @@ function WebBody() {
                   </div> */}
                 </div>
               </div>
+              <div className="absolute w-full h-full bg-[rgba(0,0,0,0.5)] z-10">
+
+              </div>
             </div>
+
             <section className="marquee">
               <div className="scroll">
                 <div>
@@ -287,7 +319,7 @@ function WebBody() {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left" data-aos="zoom-in" data-aos-delay={1000}>
                   :{`${services?.maintitle?.split(' ')[0]} ` || ''}
                   <span className="text-[#904064]">
-                     {services?.maintitle?.split(' ')[1] || ''}
+                    {services?.maintitle?.split(' ')[1] || ''}
                   </span>
                   :
                 </h1>
@@ -297,11 +329,11 @@ function WebBody() {
                 {/* Left Column: Services */}
                 <div>
                   {services?.services?.map((service, index) => (
-                    <div key={index} className="flex flex-col sm:flex-row items-start gap-4 mb-8"data-aos="fade-right" data-aos-delay={200*index} >
+                    <div key={index} className="flex flex-col sm:flex-row items-start gap-4 mb-8" data-aos="fade-right" data-aos-delay={200 * index} >
                       <img
                         src={service.img}
                         alt={service.title}
-                        className="rounded-lg w-full sm:w-[305px] h-[200px]"
+                        className="rounded-lg w-full sm:w-[305px] h-[200px] hover:scale-105 transition-all duration-300 "
                       />
                       <div>
                         <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-black small">
@@ -324,14 +356,14 @@ function WebBody() {
 
                 {/* Right Column: Hero Section */}
                 <div>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small text-black leading-tight text-center md:text-left flex flex-wrap text-center" data-aos="fade-left" data-aos-delay={200*1} >
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small text-black leading-tight text-center md:text-left flex flex-wrap text-center" data-aos="fade-left" data-aos-delay={200 * 1} >
                     {services?.subTitle?.split(' ')[0] || ''}  <span className="text-[#F97316] small mx-3">{services?.subTitle?.split(' ')[1] || ''}</span>
                     {services?.subTitle?.split(' ').slice(2).join(' ') || ''}
                   </h1>
-                  <p className="text-sm sm:text-base text-gray-500 mt-4 text-center md:text-left" data-aos="fade-left" data-aos-delay={200*1} >
+                  <p className="text-sm sm:text-base text-gray-500 mt-4 text-center md:text-left" data-aos="fade-left" data-aos-delay={200 * 1} >
                     {services?.description}
                   </p>
-                  <div className="w-full mt-6 h-[280px] sm:h-[350px] md:h-[420px] bg-gray-300 rounded-lg relative overflow-hidden group" data-aos="fade-left" data-aos-delay={200*2} >
+                  <div className="w-full mt-6 h-[280px] sm:h-[350px] md:h-[420px] bg-gray-300 rounded-lg relative overflow-hidden group" data-aos="fade-left" data-aos-delay={200 * 2} >
                     <video
                       ref={videoRef}
                       src={services?.mainVideo}
@@ -410,8 +442,9 @@ function WebBody() {
               {/* Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {plans.plan.map((plan, index) => (
-                  <div key={index} className={`${index === 1 ? 'group bg-gray-900 text-white transform scale-y-[1.10]' : 'bg-white'} rounded-lg shadow-lg overflow-hidden relative`} data-aos="fade-left" data-aos-delay={200*index}>
-                    <img
+                    <div key={index}
+                       className={`transition-all duration-300 cscale ${index === 1 ? 'group bg-gray-900 text-white transform ' : 'bg-white'} rounded-lg shadow-lg overflow-hidden relative`} data-aos="fade-left" data-aos-delay={200*index}>
+                      <img
                       src={plan.img}
                       alt={plan.title}
                       className="w-full h-[275px] object-cover"
@@ -420,12 +453,6 @@ function WebBody() {
                       <h3 className="text-[38px] noto small text-center font-semibold mb-2">
                         {plan.title}
                       </h3>
-                      {/* <p className={`text-2xl text-center font-bold ${index === 1 ? 'text-orange-400' : index === 0 ? 'text-pink-500' : 'text-red-500'}`}>
-              &#163;{plan.price}
-                <span className={`text-base font-normal ${index === 1 ? 'text-gray-300' : 'text-gray-600'}`}>
-                  /{plan.weight}
-                </span>
-              </p> */}
                       <div className="my-4">
                         <div className={`h-1 w-full ${index === 1 ? 'bg-gray-700' : 'bg-gray-200'} rounded-full relative`}>
                           <div className={`h-1 ${index === 1 ? 'w-3/4 bg-white' : index === 0 ? 'w-1/2 bg-gray-800' : 'w-1/4 bg-gray-800'} absolute top-0 left-0 rounded-full`}></div>
@@ -433,14 +460,14 @@ function WebBody() {
                       </div>
                       <ul className={`space-y-3 ${index === 1 ? 'text-gray-300' : 'text-gray-600'} text-sm`}>
                         {plan.benifits.map((benefit, i) => (
-                          <li key={i} className="flex items-center" data-aos="fade-left" data-aos-delay={100*i*index}>
+                          <li key={i} className="flex items-center" data-aos="fade-left" data-aos-delay={100 * i * index}>
                             <IoCheckmarkDone style={{ marginRight: "3px" }} />
                             {benefit}
                           </li>
                         ))}
                       </ul>
                       {plan.button.map((btn, i) => (
-                        <button key={i} className={`mt-6 w-full ${index === 1 ? 'bg-[#F97316] hover:bg-orange-400' : 'bg-gray-800 hover:bg-gray-700'} text-white py-2 px-6 rounded-lg shadow-md transition`} data-aos="zoom-in" data-aos-delay={300*i}>
+                        <button key={i} className={`mt-6 w-full ${index === 1 ? 'bg-[#F97316] hover:bg-orange-400' : 'bg-gray-800 hover:bg-gray-700'} text-white py-2 px-6 rounded-lg shadow-md transition`} data-aos="zoom-in" data-aos-delay={300 * i}>
                           {btn.name}
                         </button>
                       ))}
@@ -483,7 +510,7 @@ function WebBody() {
             <div className="max-w-7xl w-full mx-auto px-4 py-8">
               {/* <!-- Header Section --> */}
               <div>
-                <h1 className="text-3xl text-white sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left" data-aos="zoom-in" data-aos-delay={100}> 
+                <h1 className="text-3xl text-white sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left" data-aos="zoom-in" data-aos-delay={100}>
                   : {chooseUs.maintitle?.split(' ')[0]} <span className="text-[#904064]">{chooseUs.maintitle?.split(' ').slice(1).join(' ')}</span> :
                 </h1>
               </div>
@@ -491,18 +518,18 @@ function WebBody() {
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 {/* <!-- Images Section --> */}
                 <div className="space-y-4">
-                  <div className="rounded-lg overflow-hidden" data-aos="zoom-in"  data-aos-delay={500*0}>
-                    <img src={chooseUs.mainImage} alt="Main Image" className="w-full"  />
+                  <div className="rounded-lg overflow-hidden cscale" data-aos="zoom-in" data-aos-delay={500 * 0}>
+                    <img src={chooseUs.mainImage} alt="Main Image" className="w-full " />
                   </div>
                   <div className="flex gap-4">
-                    <div className="rounded-lg overflow-hidden" data-aos="zoom-in" data-aos-delay={500*2} >
+                    <div className="rounded-lg overflow-hidden cscale" data-aos="zoom-in" data-aos-delay={500 * 2} >
                       <img
                         src={chooseUs.childImage}
                         alt="Child Image"
                         className="w-56"
                       />
                     </div>
-                    <div className="rounded-lg overflow-hidden" data-aos="zoom-in" data-aos-delay={500*1} >
+                    <div className="rounded-lg overflow-hidden cscale" data-aos="zoom-in" data-aos-delay={500 * 1} >
                       <img src={chooseUs.thirdImage} alt="Third Image" className="w-full" />
                     </div>
                   </div>
@@ -514,14 +541,14 @@ function WebBody() {
                     {chooseUs.title.split(' ').slice(0, 2).join(' ')} <span className="text-[#F97316]">{chooseUs.title.split(' ')[2]}</span>
                     {chooseUs.title.split(' ').slice(3, chooseUs.title.split(' ').length).join(' ')}
                   </h3>
-                  <p className="mt-4 text-gray-400 leading-relaxed ms-4" data-aos="fade-left" data-aos-delay={500*1.5}>
+                  <p className="mt-4 text-gray-400 leading-relaxed ms-4" data-aos="fade-left" data-aos-delay={500 * 1.5}>
                     {chooseUs.subTitle}
                   </p>
 
                   {/* <!-- Features Section --> */}
-                  <div className="grid grid-cols-2 gap-5 mt-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2  gap-5 mt-8">
                     {chooseUs.details.map((detail, index) => (
-                      <div key={index} className="flex items-start space-x-4" data-aos="fade-left" data-aos-delay={500*(index+1)}  >
+                      <div key={index} className="flex items-start space-x-4" data-aos="fade-left" data-aos-delay={500 * (index + 1)}  >
                         <div className="text-[#F97316] text-4xl w-[50px]">
                           <img src={detail.img} alt={detail.title} className="w-full" />
                         </div>
@@ -579,7 +606,7 @@ function WebBody() {
       {
         !setTeamLoading ? (
 
-          <div className="max-w-7xl w-full mx-auto bg-white py-10 px-6 " >
+          <div className="max-w-7xl w-full mx-auto bg-white py-10 px-6" >
             {/* Section Heading */}
             <div className="mb-12 text-center" data-aos="zoom-in" >
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold small mt-4 mb-10 text-center sm:text-left">
@@ -590,12 +617,12 @@ function WebBody() {
             {/* Team Members */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
               {team.teamMember.map((member, index) => (
-                <div key={member._id} className="flex flex-col items-center" data-aos="fade-up" data-aos-delay={300*index}>
-                  <div className={`w-48 md:w-56 bg-gray-200 rounded-t-full overflow-hidden`}>
+                <div key={member._id} className="flex flex-col items-center" data-aos="fade-up" data-aos-delay={300 * index}>
+                  <div className={`w-48 md:w-56 bg-gray-200 rounded-t-full overflow-hidden cscale5`}>
                     <img
                       src={member.img}
                       alt={member.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover "
                     />
                   </div>
                   <h3 className="text-lg font-semibold mt-4">{member.name}</h3>
@@ -623,8 +650,8 @@ function WebBody() {
         )
 
       }
-     {/* <img src="http://localhost:8001/imageStore/icon123.png" alt="" />  */}
-    </div>
+      {/* <img src="https://sterlingplusone-backend-1.onrender.com/imageStore/icon123.png" alt="" />  */}
+    </div >
   );
 }
 

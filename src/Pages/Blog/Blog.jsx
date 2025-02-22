@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import BlogImg1 from "../../assets/image (32).png";
 import Gallry1 from "../../assets/image (33).png";
@@ -17,8 +17,13 @@ import {
 import { GetBlogByTitle, GetBlogPage, GetDefaultBlog, GetBlogPageSideSection } from "../../Api/Webapi/Getblog";
 import { Link } from "react-router";
 import { GetNavSection } from "../../Api/Webapi/GetNavSection";
+import $ from 'jquery';
+import 'jquery.ripples';
+
+import bg from "../../assets/Screenshot_2024-12-18_1655261.png";
 
 function Blog() {
+  const heroRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [blogmain, setblogmain] = useState({
     title: "",
@@ -30,6 +35,21 @@ function Blog() {
   });
   const [blogPageSideSection, setBlogPageSideSection] = useState({});
   const [icon, setIcon] = useState(null);
+
+  const rippl = (id) => {
+    $(id).ripples({
+      dropRadius: 10,        // Size of the ripple drops
+      perturbance: 0.03,     // Intensity of the ripple effect
+      interactive: true,     // Enables interaction with the mouse
+      speed: 0.5,            // Speed of the ripple animation
+      color: 'rgba(255, 255, 255, 0.5)', // Ripple color
+      opacity: 0.5,          // Opacity of the ripple effect
+      delay: 0.5,            // Delay before the ripple starts
+      duration: 1,         // Duration of the ripple animation
+      size: 10               // Size of the ripple effect
+    });
+
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -111,6 +131,33 @@ function Blog() {
 
 
 
+  
+  useEffect(() => {
+    console.log(blogmain, "bg");
+
+    if (blogmain?.bgImage) {
+      const imgurl = blogmain?.bgImage;
+      const img = new Image();
+      img.src = imgurl;
+      img.onload = () => {
+        console.log("123");
+
+        $("#blog").ripples('destroy');
+        const showRipple = heroRef.current;
+        showRipple.style.backgroundImage = `url(${img.src})`;
+        setTimeout(() => {
+          rippl('#blog');
+        }, 10)
+      }
+    }
+  }, [blogmain])
+
+  useEffect(() => {
+    rippl('#blog');
+  }, [loading])
+
+
+
 
 
 
@@ -157,31 +204,16 @@ function Blog() {
   console.log(blogPageSideSection);
   return (
     <div>
+      <div className={`w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center `} ref={heroRef} id="blog" style={{ backgroundImage: `url(${bg})`, backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', height: window.innerWidth > 768 ? window.innerHeight - 230 : window.innerHeight - 300 }}>
 
-      <div className="w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center " style={{ background: `url(${blogmain?.bgImage})` ,backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center',backgroundColor: "rgba(0, 0, 0, 0.4)",backgroundBlendMode: "multiply", height: window.innerWidth > 768 ? window.innerHeight-230 : null }}>
-        {/* Content */}
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full absolute " style={{ zIndex: '11' }}>
           <div className="text-center">
-
-            {/* <h1 className="mt-8 sm:mt-12 text-2xl sm:text-4xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-[1.2] sm:leading-[1.4]" data-aos="fade-up" data-aos-offset="0" data-aos-delay="500" >
-              {blogmain?.title}
-
-            </h1> */}
-            <p className="mt-4 sm:mt-6 lg:mt-8 text-base sm:text-lg lg:text-xl text-gray-300 font-medium" data-aos="fade-up" data-aos-offset="0" data-aos-delay="600" >
+            <p className="mt-4 text-sm sm:text-base lg:text-xl text-gray-300 font-medium" data-aos="zoom-in-up" data-aos-delay={1100}>
               {blogmain?.subTitle}
             </p>
-            {/* <div className="mt-6 sm:mt-12">
-              {blogmain?.button?.map((btn, index) => (
-                <>
-                  <Link to={btn?.link} data-aos="fade-up" data-aos-offset="0" data-aos-delay={700*(index+1)} >
-                    <button className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-6 py-3 sm:px-10 sm:py-4 rounded-lg hover:bg-blue-800 whitespace-nowrap">
-                      {btn?.name}
-                    </button>
-                  </Link>
-                </>
-              ))}
-            </div> */}
           </div>
+        </div>
+        <div className="absolute w-full h-full bg-[rgba(0,0,0,0.5)] z-10">
         </div>
       </div>
 
@@ -191,11 +223,11 @@ function Blog() {
           {/* <!-- Left Content --> */}
           <div className="lg:col-span-2" >
             {/* <!-- Article 1 --> */}
-            <div >
+            <div className="w-full overflow-hidden rounded-lg">
               <img
                 src={blog?.image}
                 alt="Starcraft Tournament"
-                className="w-full object-cover  shadow-lg rounded-lg"
+                className="w-full object-cover  shadow-lg cscale5"
                 data-aos="fade-right" data-aos-offset="50" data-aos-delay="600"
               />
             </div>
@@ -228,7 +260,7 @@ function Blog() {
               <img
                 src={blog?.subImage}
                 alt="Dota Madness"
-                className="w-full object-cover"
+                className="w-full object-cover cscale5"
               />
             </div>
             <div className="rounded-lg mt-3 text-gray-600 text-justify text-base" data-aos="fade-up" data-aos-offset="0" data-aos-delay="1200">
@@ -244,7 +276,7 @@ function Blog() {
                       <img
                         src={icon?.Image}
                         alt=""
-                        className="w-10 h-10 mr-2 grayscale-[100%] invert"
+                        className="w-10 h-10 mr-2 grayscale-[100%] invert cscale10"
                       />
                     </Link>
                   ))
@@ -252,8 +284,8 @@ function Blog() {
               </div>
               <div className="flex gap-2 flex-wrap">
                 {blog?.button?.map((btn, index) => (
-                  <Link to={btn?.link} key={index} className="cursor-pointer">
-                    <span className="px-6 py-2 rounded-lg border shadow-sm cursor-pointer">{btn?.name}</span>
+                  <Link to={btn?.link} key={index} className="cursor-pointer cscale10">
+                    <span className="px-6 py-2 rounded-lg border shadow-sm cursor-pointer ">{btn?.name}</span>
                   </Link>
                 ))}
               </div>
@@ -307,11 +339,11 @@ function Blog() {
             </div>
 
             {/* <!-- Categories --> */}
-            <div className="bg-gray-200 mt-4 rounded-lg p-4" data-aos="fade-up"  data-aos-delay="900">
+            <div className="bg-gray-200 mt-4 rounded-lg p-4" data-aos="fade-up" data-aos-delay="900">
               <h3 className="text-lg font-bold mb-4">{blogPageSideSection?.blogPageSideSection?.Categorytitle || "Categories"}</h3>
               <div className="space-y-4">
                 {blogPageSideSection?.blogPageSideSection?.topCategory?.map((category, index) => (
-                  <div key={index} className="flex justify-between items-center rounded-lg p-2 bg-white cursor-pointer" onClick={() => { handleTitle(category?.blogId); console.log(category) }}>
+                  <div key={index} className="flex justify-between items-center rounded-lg p-2 bg-white cursor-pointer cscale3" onClick={() => { handleTitle(category?.blogId); console.log(category) }}>
                     <span className="text-sm">{category?.title || "Category Name"}</span>
                     <span className="ml-1">&rarr;</span>
                   </div>
@@ -328,8 +360,8 @@ function Blog() {
                     key={index}
                     src={image || "default-image-path.jpg"}
                     alt={`Gallery ${index + 1}`}
-                    className="w-full h-[88px] object-cover rounded-md"
-                    data-aos="fade-up" data-aos-offset="0" data-aos-delay={(300*(index+1))+1000}
+                    className="w-full h-[88px] object-cover rounded-md cscale5"
+                    data-aos="fade-up" data-aos-offset="0" data-aos-delay={(300 * (index + 1)) + 1000}
                   />
                 ))}
               </div>

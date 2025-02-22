@@ -25,6 +25,12 @@ function App() {
     }, 500);
   }, []);
 
+  // useEffect(() => {
+  //   const root = document.getElementById("root");
+  //   root.classList.add("overflow-x-hidden");
+  //   root.classList.add("w-[100vw]");
+  // }, []);
+
   return (
     <>
       <Routes>

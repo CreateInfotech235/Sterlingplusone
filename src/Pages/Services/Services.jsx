@@ -1,13 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { GetServiceMain, GetService } from "../../Api/Webapi/GetServices";
 import { Link } from "react-router";
+import $ from 'jquery';
+import 'jquery.ripples';
 import Partners from "../Partners/Partners";
+import bg from "../../assets/Screenshot_2024-12-18_1655261.png";
 
 function Services() {
   const [heroData, setHeroData] = useState([]);
   const [servicesData, setServicesData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+
+
+  const heroRef = useRef(null);
+
+  const rippl = (id) => {
+    $(id).ripples({
+      dropRadius: 10,        // Size of the ripple drops
+      perturbance: 0.03,     // Intensity of the ripple effect
+      interactive: true,     // Enables interaction with the mouse
+      speed: 0.5,            // Speed of the ripple animation
+      color: 'rgba(255, 255, 255, 0.5)', // Ripple color
+      opacity: 0.5,          // Opacity of the ripple effect
+      delay: 0.5,            // Delay before the ripple starts
+      duration: 1,         // Duration of the ripple animation
+      size: 10               // Size of the ripple effect
+    });
+
+  }
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +48,34 @@ function Services() {
     };
     fetchData();
   }, []);
+
+
+
+
+
+  useEffect(() => {
+    console.log(heroData, "bg");
+
+    if (heroData?.bgImage) {
+      const imgurl = heroData?.bgImage;
+      const img = new Image();
+      img.src = imgurl;
+      img.onload = () => {
+        console.log("123");
+
+        $("#heroData").ripples('destroy');
+        const showRipple = heroRef.current;
+        showRipple.style.backgroundImage = `url(${img.src})`;
+        setTimeout(() => {
+          rippl('#heroData');
+        }, 10)
+      }
+    }
+  }, [heroData])
+
+  useEffect(() => {
+    rippl('#heroData');
+  }, [loading])
 
   if (loading) {
     return (
@@ -61,37 +113,46 @@ function Services() {
 
   return (
     <div>
-      <div className="w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center " style={{ background: `url(${heroData?.bgImage})` ,backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: "rgba(0, 0, 0, 0.4)", backgroundBlendMode: "multiply", height: window.innerWidth > 768 ? window.innerHeight - 230 : null }}>
 
-        {/* Content */}
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+
+      <div className={`w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center `} ref={heroRef} id="heroData" style={{ backgroundImage: `url(${bg})`, backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', height: window.innerWidth > 768 ? window.innerHeight - 230 : window.innerHeight - 300 }}>
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full absolute " style={{ zIndex: '11' }}>
+          <div className="text-center">
+            <p className="mt-4 text-sm sm:text-base lg:text-xl text-gray-300 font-medium" data-aos="zoom-in-up" data-aos-delay={1100}>
+              {heroData?.subTitle}
+            </p>
+          </div>
+        </div>
+        <div className="absolute w-full h-full bg-[rgba(0,0,0,0.5)] z-10">
+        </div>
+      </div>
+
+
+
+
+
+
+      {/* <div className="w-full relative isolate overflow-hidden py-12 sm:py-24 flex justify-center items-center " id="heroData" ref={heroRef} style={{ background: `url(${bg})`, backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: "rgba(0, 0, 0, 0.4)", backgroundBlendMode: "multiply", height: window.innerWidth > 768 ? window.innerHeight - 230 : null }}>
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8  z-10" style={{ position: "absolute", zIndex: 12 }}>
           <div className="text-center">
             <h3 className="text-2xl sm:text-3xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.2] sm:leading-[1.4] capitalize">
-              {/* Welcome to Sterlingplus */}
             </h3>
-            {/* <h1 className="mt-8 sm:mt-12 text-2xl sm:text-4xl lg:text-6xl uppercase font-bold tracking-tight text-white leading-[1.2] sm:leading-[1.4]" data-aos="fade-up" data-aos-offset="100" data-aos-delay="200" >
-              {heroData?.title}
-            </h1> */}
             <p className="mt-4 sm:mt-6 lg:mt-8 text-base sm:text-lg lg:text-xl text-gray-300 font-medium" data-aos="fade-up" data-aos-offset="100" data-aos-delay="300" >
               {heroData?.subTitle}
             </p>
-{/* 
-            <div className="mt-6 sm:mt-12">
-              <Link to={heroData?.button?.link} >
-                <button className="bg-gradient-to-b from-custom-blue to-custom-pink text-white px-6 py-3 sm:px-10 sm:py-4 rounded-lg hover:bg-blue-800 whitespace-nowrap"   data-aos="fade-up" data-aos-offset="100" data-aos-delay="400">
-                  {heroData?.button?.name}
-                </button>
-              </Link>
-            </div> */}
           </div>
         </div>
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50 " style={{zIndex: '11'}}></div>
+      </div> */}
 
       <div className="max-w-7xl w-full mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
           {servicesData.map((service, index) => (
-            <div key={index} className="bg-white rounded-lg overflow-hidden" data-aos="fade-up" data-aos-offset="200" data-aos-delay={200 * (index + 1)} >
-              <div className="relative">
+            <div key={index} className="bg-white rounded-lg overflow-hidden cscale5" data-aos="fade-up" data-aos-offset="200" data-aos-delay={200 * (index + 1)} >
+              <div className="relative ">
                 <img
                   src={service.img}
                   alt={service.title}
@@ -100,7 +161,7 @@ function Services() {
                 <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-40" >
                   <div className="flex items-center gap-4"  >
                     <div className="w-20 h-20 bg-white bg-opacity-40 rounded-full flex items-center justify-center shadow-lg" data-aos="zoom-out" data-aos-delay={300 * (index + 1.5)} >
-                      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg" data-aos="zoom-out" data-aos-delay={350 * (index + 1.5)} >
+                      <div className="w-16 h-16 bg-white  rounded-full flex items-center justify-center shadow-lg" data-aos="zoom-out" data-aos-delay={350 * (index + 1.5)} >
                         <GiCommercialAirplane style={{ color: "#F97316", fontSize: "30px" }} />
                       </div>
                     </div>

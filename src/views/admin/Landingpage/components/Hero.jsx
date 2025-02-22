@@ -124,6 +124,21 @@ const Hero = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     try {
       setLoading(true);
       const response = await HeroPost(heroData);
