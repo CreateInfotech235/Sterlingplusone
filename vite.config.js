@@ -9,5 +9,10 @@ export default defineConfig({
     fs: {
       strict: false
     }
-  }
+  },
+  build: {
+    rollupOptions: {
+      external: ['yup'], // Add 'yup' to the external dependencies
+    },
+  },
 })
