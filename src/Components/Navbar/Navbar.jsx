@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router";
 
 import { GetNavSection } from "../../Api/Webapi/GetNavSection";
 import { GetManuSection } from "../../Api/Webapi/GetmanuSection";
+import "./button.css"
 // import Button from "./Button";
 
 function Navbar() {
@@ -140,24 +141,34 @@ function Navbar() {
                 )}
               </div>
             </div>
+            {/* contact us section */}
 
             {/* Login/Register Section */}
             <div className="flex items-center lg:space-x-4 md:space-x-2">
             {manu?.button ? (
-                <button
-                  // to={manu.button.link}
-                
-                  className="bg-gradient-to-b from-custom-blue to-custom-pink w-28 h-14 transition-all duration-300   text-white  rounded-lg hover:bg-blue-800 whitespace-nowrap ml-5  text-center transition-all duration-300 flex items-center justify-center  transition-transform  "
-                  data-aos="zoom-in" data-aos-delay={450}
-                  onMouseEnter={(e) => {
-                    e.target.style.scale = '1.05';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.scale = '1';
-                  }}
+              <>
+<button 
+data-aos="zoom-in" data-aos-delay={450}
+className="navbarbutton relative inline-flex items-center justify-center px-8 py-3 rounded-full font-bold text-gray-800 shadow-md hover:bg-blue-100 hover:text-indigo-900 active:scale-95">
+{manu.button.text}
+      <div className="hoverEffect absolute inset-0 flex items-center justify-center z-10">
+        <div></div>
+      </div>
+    </button>
+
+                {/* <button
+                  className="bg-gradient-to-b from-custom-blue to-custom-pink w-28 h-14    text-white  rounded-lg hover:bg-blue-800 whitespace-nowrap ml-5  text-center transition-all duration-300 flex items-center justify-center    "
+                  
+                  // onMouseEnter={(e) => {
+                  //   e.target.style.scale = '1.05';
+                  // }}
+                  // onMouseLeave={(e) => {
+                  //   e.target.style.scale = '1';
+                  // }}
                 >
-                  {manu.button.text}
-                </button>
+                  
+                </button> */}
+                  </>
               ) : (
                 <div className="w-32 h-10 bg-gray-300 rounded animate-pulse ml-5"></div>
               )}
