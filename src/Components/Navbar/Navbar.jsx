@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import HeaderLogo from "../../assets/sterlingplusone_logo.png";
 // import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 import { GetNavSection } from "../../Api/Webapi/GetNavSection";
 import { GetManuSection } from "../../Api/Webapi/GetmanuSection";
@@ -15,6 +15,7 @@ function Navbar() {
   const [manu, setManu] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hoverindex, sethoverindex] = useState(null);
+  const navigate = useNavigate();
 
   const getLinkClass = (path, isMobile = false) => {
     const baseClass = `${isMobile ? "block " : ""}px-${isMobile ? "3" : "2"
@@ -22,7 +23,7 @@ function Navbar() {
     return `${baseClass} ${location.pathname === path ? "text-blue-700 font-bold" : ""
       }`;
   };
-;
+  ;
 
   useEffect(() => {
     const fetchNavData = async () => {
@@ -73,7 +74,7 @@ function Navbar() {
       <div className="bg-[#111827]" >
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center py-5" >
-          <div className="w-full md:w-1/2 text-center md:text-left mb-4 md:mb-0" data-aos="zoom-in-left">
+            <div className="w-full md:w-1/2 text-center md:text-left mb-4 md:mb-0" data-aos="zoom-in-left">
               <p className="text-white font-bold transition-colors duration-200 cursor-pointer ctextw" >
                 {nav?.title || <div className="w-48 h-4 bg-gray-300 rounded animate-pulse"></div>}
               </p>
@@ -84,12 +85,12 @@ function Navbar() {
                   nav.icons.map((icon, index) => (
                     <Link key={index} to={icon.link} target="_blank" className="w-7 h-7 ml-2 hover:scale-125 transition-all duration-300">
                       <li data-aos="zoom-in" data-aos-delay={index * 100}>
-                        <img 
-                          src={`https://logo.clearbit.com/${new URL(icon.link).hostname}`} 
-                          onError={(e) => { e.target.onerror = null; e.target.src = icon.Image; }} 
-                          style={{borderRadius: "50%", transition: "filter 0.3s"}} 
-                          alt={`Icon ${index + 1}`} 
-                          className="w-6 h-6 grayscale-[100%] hover:grayscale-0" 
+                        <img
+                          src={`https://logo.clearbit.com/${new URL(icon.link).hostname}`}
+                          onError={(e) => { e.target.onerror = null; e.target.src = icon.Image; }}
+                          style={{ borderRadius: "50%", transition: "filter 0.3s" }}
+                          alt={`Icon ${index + 1}`}
+                          className="w-6 h-6 grayscale-[100%] hover:grayscale-0"
                         />
                       </li>
                     </Link>
@@ -111,7 +112,7 @@ function Navbar() {
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-24">
             <div className="flex items-center">
-            <Link to={manu?.logo?.path || "/"} className="flex-shrink-0   " data-aos="zoom-in-left" data-aos-delay={450}>
+              <Link to={manu?.logo?.path || "/"} className="flex-shrink-0   " data-aos="zoom-in-left" data-aos-delay={450}>
                 {manu?.logo?.img ? (
                   <img src={manu?.logo?.img} className="h-16 hover:scale-110 transition-all duration-300" alt="Logo" />
                 ) : (
@@ -128,7 +129,7 @@ function Navbar() {
                     <Link
                       key={link._id}
                       to={link.path}
-                      className={`${getLinkClass(link.path)} text-[18px] font-bold  transition-all duration-300 ${window.location.pathname==link.path ? "tah" : "ta"}  ` }
+                      className={`${getLinkClass(link.path)} text-[18px] font-bold  transition-all duration-300 ${window.location.pathname == link.path ? "tah" : "ta"}  `}
                       data-aos="zoom-in" data-aos-delay={index * 100}
                     >
                       {link.name}
@@ -145,30 +146,19 @@ function Navbar() {
 
             {/* Login/Register Section */}
             <div className="flex items-center lg:space-x-4 md:space-x-2">
-            {manu?.button ? (
-              <>
-<button 
-data-aos="zoom-in" data-aos-delay={450}
-className="navbarbutton relative inline-flex items-center justify-center px-8 py-3 rounded-full font-bold text-gray-800 shadow-md hover:bg-blue-100 hover:text-indigo-900 active:scale-95">
-{manu.button.text}
-      <div className="hoverEffect absolute inset-0 flex items-center justify-center z-10">
-        <div></div>
-      </div>
-    </button>
-
-                {/* <button
-                  className="bg-gradient-to-b from-custom-blue to-custom-pink w-28 h-14    text-white  rounded-lg hover:bg-blue-800 whitespace-nowrap ml-5  text-center transition-all duration-300 flex items-center justify-center    "
-                  
-                  // onMouseEnter={(e) => {
-                  //   e.target.style.scale = '1.05';
-                  // }}
-                  // onMouseLeave={(e) => {
-                  //   e.target.style.scale = '1';
-                  // }}
-                >
-                  
-                </button> */}
-                  </>
+              {manu?.button ? (
+                <>
+                  <button
+                    data-aos="zoom-in" data-aos-delay={450}
+                    onClick={() => {
+                      navigate(manu.button.link)}}
+                    className="navbarbutton relative inline-flex items-center justify-center px-8 py-3 rounded-full font-bold text-gray-800 shadow-md hover:bg-blue-100 hover:text-indigo-900 active:scale-95">
+                    {manu.button.text}
+                    <div className="hoverEffect absolute inset-0 flex items-center justify-center z-10">
+                      <div></div>
+                    </div>
+                  </button>
+                </>
               ) : (
                 <div className="w-32 h-10 bg-gray-300 rounded animate-pulse ml-5"></div>
               )}
@@ -176,7 +166,7 @@ className="navbarbutton relative inline-flex items-center justify-center px-8 py
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="md:hidden ml-1 p-2 rounded-md text-gray-700 hover:text-blue-700 focus:outline-none"
-                
+
               >
                 <svg
                   className="h-6 w-6"
