@@ -1,13 +1,14 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "flowbite";
+/* @import "flowbite"; */
 /*Default Style Page*/
-body{margin:0;}
+body {
+  margin: 0;
+}
 
 /*Marquee stile*/
-.marquee{
+.marquee {
   background: #111827;
   position: relative;
   width: 100%;
@@ -15,11 +16,11 @@ body{margin:0;}
   overflow: hidden;
   padding: 0;
 }
-.marquee .scroll{
+.marquee .scroll {
   width: 100%;
   display: flex;
 }
-.marquee .scroll div{
+.marquee .scroll div {
   color: #fff;
   font-size: 35px;
   background: #111827;
@@ -28,17 +29,17 @@ body{margin:0;}
   animation: animate-marquee 80s linear infinite;
   animation-delay: -40s;
 }
-.marquee .scroll div:nth-child(2){
+.marquee .scroll div:nth-child(2) {
   animation: animate-marquee-2 80s linear infinite;
   animation-delay: -80s;
 }
-.marquee .scroll div .category{
+.marquee .scroll div .category {
   padding: 10px 30px;
 }
-.category{
+.category {
   color: #fff;
   font-size: 35px;
-  font-weight: 600!important;
+  font-weight: 600 !important;
   clear: both;
   display: inline-block;
   overflow: hidden;
@@ -46,36 +47,43 @@ body{margin:0;}
   line-height: 20px;
   font-family: sans-serif;
 }
-.category a{color:#FFF;text-decoration: none;}
+.category a {
+  color: #fff;
+  text-decoration: none;
+}
 
 /*Responsive marquee*/
-@media (max-width:767px){
-  .category{font-size: 25px;}
-  .marquee .scroll div{font-size: 25px;}
+@media (max-width: 767px) {
+  .category {
+    font-size: 25px;
+  }
+  .marquee .scroll div {
+    font-size: 25px;
+  }
 }
 
-@keyframes animate-marquee{
-	0%{
-		-moz-transform: translateX(100%);
-		-webkit-transform: translateX(100%);
-		transform: translateX(100%);
-	}
-	100%{
-		-moz-transform: translateX(-100%);
-		-webkit-transform: translateX(-100%);
-		transform: translateX(-100%);
-	}
+@keyframes animate-marquee {
+  0% {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  100% {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
 }
 
-@keyframes animate-marquee-2{
-	0%{
-		-moz-transform: translateX(0%);
-		-webkit-transform: translateX(0%);
-		transform: translateX(0%);
-	}
-	100%{
-		-moz-transform: translateX(-200%);
-		-webkit-transform: translateX(-200%);
-		transform: translateX(-200%);
-	}
+@keyframes animate-marquee-2 {
+  0% {
+    -moz-transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+  100% {
+    -moz-transform: translateX(-200%);
+    -webkit-transform: translateX(-200%);
+    transform: translateX(-200%);
+  }
 }

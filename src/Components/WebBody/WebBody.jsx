@@ -449,7 +449,7 @@ function WebBody() {
                       alt={plan.title}
                       className="w-full h-[275px] object-cover"
                     />
-                    <div className="p-6">
+                    <div className="p-6 flex flex-col items-stretch">
                       <h3 className="text-[38px] noto small text-center font-semibold mb-2">
                         {plan.title}
                       </h3>
@@ -467,7 +467,7 @@ function WebBody() {
                         ))}
                       </ul>
                       {plan.button.map((btn, i) => (
-                        <button key={i} className={`mt-6 w-full ${index === 1 ? 'bg-[#F97316] hover:bg-orange-400' : 'bg-gray-800 hover:bg-gray-700'} text-white py-2 px-6 rounded-lg shadow-md transition`} data-aos="zoom-in" data-aos-delay={300 * i}>
+                        <button key={i} className={`mt-6 w-full    ${index === 1 ? 'bg-[#F97316] hover:bg-orange-400' : 'bg-gray-800 hover:bg-gray-700'} text-white py-2 px-6 rounded-lg shadow-md transition`} data-aos="zoom-in" data-aos-delay={300 * i}>
                           {btn.name}
                         </button>
                       ))}
