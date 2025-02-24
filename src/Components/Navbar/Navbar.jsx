@@ -13,6 +13,7 @@ function Navbar() {
   const [nav, setNav] = useState(null);
   const [manu, setManu] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [hoverindex, sethoverindex] = useState(null);
 
   const getLinkClass = (path, isMobile = false) => {
     const baseClass = `${isMobile ? "block " : ""}px-${isMobile ? "3" : "2"
@@ -80,9 +81,15 @@ function Navbar() {
               <ul className="flex flex-wrap justify-center">
                 {nav?.icons ? (
                   nav.icons.map((icon, index) => (
-                    <Link key={index} to={icon.link} target="_blank" className="w-7 h-7 ml-2   hover:scale-125 transition-all duration-300" >
+                    <Link key={index} to={icon.link} target="_blank" className="w-7 h-7 ml-2 hover:scale-125 transition-all duration-300">
                       <li data-aos="zoom-in" data-aos-delay={index * 100}>
-                        <img src={icon.Image} alt={`Icon ${index + 1}`} className="w-6 h-6" />
+                        <img 
+                          src={`https://logo.clearbit.com/${new URL(icon.link).hostname}`} 
+                          onError={(e) => { e.target.onerror = null; e.target.src = icon.Image; }} 
+                          style={{borderRadius: "50%", transition: "filter 0.3s"}} 
+                          alt={`Icon ${index + 1}`} 
+                          className="w-6 h-6 grayscale-[100%] hover:grayscale-0" 
+                        />
                       </li>
                     </Link>
                   ))

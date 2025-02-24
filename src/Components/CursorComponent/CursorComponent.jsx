@@ -5,6 +5,7 @@ const CursorComponent = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [cursorOpacity, setCursorOpacity] = useState(0);
   const [pointerOpacity, setPointerOpacity] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -48,8 +49,23 @@ const CursorComponent = () => {
     }, 100); // Match timeout with animation duration
   };
 
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  useEffect(() => {
+    handleResize(
+      
+    )
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
+    {!isMobile ? (
+      <>
       <div
         id="cursor"
         className={`absolute opacity-${cursorOpacity} top-[50%] left-[50%] w-[50px] h-[50px] border-[1px] border-[#262626] rounded-full transform transition-all pointer-events-none duration-150 ${cursorZoom ? 'scale-125' : 'scale-100'}`}
@@ -61,6 +77,8 @@ const CursorComponent = () => {
         className="absolute  top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-[10px] h-[10px] bg-[#FF5F3D] rounded-full pointer-events-none"
         style={{ left: `${cursorPosition.x}px`, top: `${cursorPosition.y}px`, zIndex: 1000 }}
       ></div>
+      </>
+      ) : null}
     </>
   );
 };

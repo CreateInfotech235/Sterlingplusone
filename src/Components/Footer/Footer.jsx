@@ -73,8 +73,14 @@ function Footer() {
             {footerData?.socialMedia?.map((social, index) => (
               <>
                 <Link key={index} to={social?.link} className="text-xl cscale20" data-aos="fade-up" data-aos-delay={200*index}>
-                  <img src={social?.icon} alt={social?.name} style={{ width: '30px'}} />
-                </Link>
+                  <img 
+                  src={`https://logo.clearbit.com/${new URL(social?.link).hostname}`}
+                  onError={(e) => { e.target.onerror = null; e.target.src = social?.icon; }} 
+                  style={{borderRadius: "50%", transition: "filter 0.3s"}} 
+                  alt={social?.name} 
+                  className="w-6 h-6 " 
+                  />
+                </Link> 
               </>
             ))}
           </div>
